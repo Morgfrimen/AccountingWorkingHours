@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.IO;
+using System.Windows;
 using System.Windows.Threading;
 using AccountingWorkingHours.ViewModels;
 using AccountingWorkingHours.ViewModels.Abstracts;
@@ -28,6 +30,12 @@ public partial class App : Application
             .File("logs.log", rollingInterval: RollingInterval.Day)).Build();
     }
 
+    protected override void OnStartup(StartupEventArgs e)
+    {
+        CheckFolderAndFile();
+        base.OnStartup(e);
+    }
+
     protected override async void OnExit(ExitEventArgs e)
     {
         using (Host)
@@ -47,8 +55,15 @@ public partial class App : Application
     private void App_OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
     {
         var logger = Host.Services.GetService<ILogger>();
-        logger!.Error(e.Exception, "Произошла глобальная/необработанная ошибка ошибка");
+        logger!.Error(e.Exception, "Произошла глобальная/необработанная ошибка");
         MessageBox.Show("Произошла ошибка в работе приложения", "Критическая ошибка", MessageBoxButton.OK,
             MessageBoxImage.Error);
+    }
+
+    private void CheckFolderAndFile()
+    {
+        var path = Path.Combine(Environment.CurrentDirectory, "Data");
+        if (!Directory.Exists(path))
+            Directory.CreateDirectory(path);
     }
 }
