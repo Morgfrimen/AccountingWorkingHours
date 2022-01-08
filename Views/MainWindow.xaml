@@ -91,9 +91,7 @@
                    Margin="8,0,0,0"
                    FontSize="15" />
 
-            <ListView x:Name="workersList"
-                      SelectedItem="{Binding SelectedWorker}"
-                      Background="Transparent"
+            <ListView Background="Transparent"
                       BorderThickness="0"
                       Grid.Row="1"
                       ItemContainerStyle="{StaticResource WorkerCard}" />
@@ -149,9 +147,7 @@
                    Margin="0,0,8,0"
                    FontSize="15" />
 
-            <ListView x:Name="placesList"
-                      SelectedItem="{Binding SelectedPlace}"
-                      Background="Transparent"
+            <ListView Background="Transparent"
                       BorderThickness="0"
                       Grid.Row="1"
                       ItemContainerStyle="{StaticResource PlaceCard}" />
@@ -211,8 +207,7 @@
                       BorderThickness="0"
                       VerticalAlignment="Stretch"
                       ColumnHeaderStyle="{StaticResource headerStyle}"
-                      AutoGenerateColumns="False"
-                      Height="{Binding}">
+                      AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Дата" Width="*" />
                     <DataGridTextColumn Header="Объект" Width="*" />
@@ -242,8 +237,7 @@
 
                 <Border Grid.ColumnSpan="2"
                         Background="#2F3136">
-                    <Label Content="{Binding SelectPlace}"
-                           VerticalAlignment="Center"
+                    <Label VerticalAlignment="Center"
                            FontWeight="Medium"
                            Foreground="Gray"
                            Margin="8,-3,0,0"
