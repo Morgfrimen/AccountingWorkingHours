@@ -18,20 +18,14 @@ public partial class App : Application
 
     public App()
     {
-        Host = Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder()
-
-            .ConfigureServices(service =>
-            {
-                service.AddScoped<IMainWindowViewModel, MainWindowViewModel>();
-                service.AddTransient<IAddPlaceWindowViewModel, AddPlaceWindowViewModes>();
-
-                service.AddSingleton<MainWindow>();
-            })
-            .UseSerilog((hostingContext, _, loggerConfiguration) => loggerConfiguration
-                .ReadFrom.Configuration(hostingContext.Configuration)
-                .Enrich.FromLogContext()
-                .WriteTo.File("logs.log", rollingInterval: RollingInterval.Day))
-            .Build();
+        Host = Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder().ConfigureServices(service =>
+        {
+            service.AddScoped<IMainWindowViewModel, MainWindowViewModel>();
+            service.AddTransient<IAddPlaceWindowViewModel, AddPlaceWindowViewModes>();
+            service.AddSingleton<MainWindow>();
+        }).UseSerilog((hostingContext, _, loggerConfiguration) => loggerConfiguration.ReadFrom
+            .Configuration(hostingContext.Configuration).Enrich.FromLogContext().WriteTo
+            .File("logs.log", rollingInterval: RollingInterval.Day)).Build();
     }
 
     protected override async void OnExit(ExitEventArgs e)
@@ -43,9 +37,6 @@ public partial class App : Application
 
         base.OnExit(e);
     }
-
-
-
 
     private void OnStartup(object sender, StartupEventArgs e)
     {
