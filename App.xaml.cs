@@ -16,8 +16,6 @@ namespace AccountingWorkingHours;
 /// </summary>
 public partial class App : Application
 {
-    public IHost Host { get; }
-
     public App()
     {
         Host = Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder().ConfigureServices(service =>
@@ -29,6 +27,8 @@ public partial class App : Application
             .Configuration(hostingContext.Configuration).Enrich.FromLogContext().WriteTo
             .File("logs.log", rollingInterval: RollingInterval.Day)).Build();
     }
+
+    public IHost Host { get; }
 
     protected override void OnStartup(StartupEventArgs e)
     {

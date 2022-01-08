@@ -126,7 +126,7 @@
                         Foreground="Gray"
                         FontWeight="Medium"
                         FontSize="13"
-                        Command="{Binding RemoveWorkerDialog}"/>
+                        Command="{Binding RemoveWorkerDialog}" />
 
             </StackPanel>
         </Grid>
@@ -184,8 +184,8 @@
                         Background="Transparent"
                         Foreground="Gray"
                         FontWeight="Medium"
-                        FontSize="13" 
-                        Command="{Binding RemovePlaceDialog}"/>
+                        FontSize="13"
+                        Command="{Binding RemovePlaceDialog}" />
 
 
             </StackPanel>

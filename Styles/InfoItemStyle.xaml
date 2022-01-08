@@ -4,19 +4,20 @@
 
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Background" Value="#292b2f"/>
+                <Setter Property="Background" Value="#292b2f" />
             </Trigger>
         </Style.Triggers>
-        <Setter Property="Background" Value="#393B40"/>
-        
-        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="Background" Value="#393B40" />
+
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
 
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListViewItem">
-                    <Border Background="{TemplateBinding Background}" BorderThickness="0,0,0,1" BorderBrush="Gray"  Padding="0,4">
+                    <Border Background="{TemplateBinding Background}" BorderThickness="0,0,0,1" BorderBrush="Gray"
+                            Padding="0,4">
                         <Grid>
-                            <GridViewRowPresenter TextBlock.Foreground="Gray" TextBlock.FontSize="15"/>
+                            <GridViewRowPresenter TextBlock.Foreground="Gray" TextBlock.FontSize="15" />
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -25,5 +26,3 @@
 
     </Style>
 </ResourceDictionary>
-
-
