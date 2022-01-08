@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using AccountingWorkingHours.ViewModels;
@@ -32,7 +33,7 @@ public partial class App : Application
 
     protected override void OnStartup(StartupEventArgs e)
     {
-        CheckFolderAndFile();
+        CheckFolderAndFileAsync().ConfigureAwait(false);
         base.OnStartup(e);
     }
 
@@ -60,10 +61,13 @@ public partial class App : Application
             MessageBoxImage.Error);
     }
 
-    private void CheckFolderAndFile()
+    private Task CheckFolderAndFileAsync()
     {
-        var path = Path.Combine(Environment.CurrentDirectory, "Data");
-        if (!Directory.Exists(path))
-            Directory.CreateDirectory(path);
+        return Task.Run(() =>
+        {
+            var path = Path.Combine(Environment.CurrentDirectory, "Data");
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+        });
     }
 }
