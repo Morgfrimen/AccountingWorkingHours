@@ -6,11 +6,11 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="./Themes/WorkerCard.xaml"/>
-                <ResourceDictionary Source="./Themes/PlaceCard.xaml"/>
-                <ResourceDictionary Source="./Themes/HeaderStyle.xaml"/>
-                <ResourceDictionary Source="./Themes/InfoItemStyle.xaml"/>
-                <ResourceDictionary Source="./Themes/WindowStyle.xaml"/>
+                <ResourceDictionary Source="Styles/WorkerCardStyle.xaml"/>
+                <ResourceDictionary Source="Styles/PlaceCardStyle.xaml"/>
+                <ResourceDictionary Source="Styles/HeaderStyle.xaml"/>
+                <ResourceDictionary Source="Styles/InfoItemStyle.xaml"/>
+                <ResourceDictionary Source="Styles/WindowStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
