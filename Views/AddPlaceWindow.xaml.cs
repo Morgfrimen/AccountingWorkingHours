@@ -1,17 +1,32 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 using AccountingWorkingHours.ViewModels.Abstracts;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace AccountingWorkingHours.Views
+namespace AccountingWorkingHours.Views;
+
+/// <summary>
+/// Логика взаимодействия для AddPlaceWindow.xaml
+/// </summary>
+public partial class AddPlaceWindow : Window
 {
-    /// <summary>
-    /// Логика взаимодействия для AddPlaceWindow.xaml
-    /// </summary>
-    public partial class AddPlaceWindow : Window
+    public AddPlaceWindow()
     {
-        public AddPlaceWindow(IAddPlaceWindowViewModel vm)
-        {
-            InitializeComponent();
-            DataContext = vm;
-        }
+        InitializeComponent();
+        DataContext = (Application.Current as App)!.Host.Services.GetService<IAddPlaceWindowViewModel>();
+    }
+
+    private void CommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+    {
+        this.DialogResult = true;
+        this.Close();
+    }
+
+    private void CommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = true;
+
+    private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+    {
+        if (e.LeftButton is MouseButtonState.Pressed)
+            DragMove();
     }
 }

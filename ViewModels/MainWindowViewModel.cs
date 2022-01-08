@@ -7,9 +7,13 @@ namespace AccountingWorkingHours.ViewModels;
 
 public sealed class MainWindowViewModel : BaseViewModel, IMainWindowViewModel 
 {
-    public MainWindowViewModel(AddPlaceWindow addPlaceWindow)
+    public MainWindowViewModel()
     {
-        AddPlaceDialog = new RelayCommand((obj)=>{ addPlaceWindow.ShowDialog();});
+        AddPlaceDialog = new RelayCommand((obj) =>
+        {
+            AddPlaceWindow addPlaceWindow = new();
+            addPlaceWindow.ShowDialog();
+        });
     }
 
     public ICommand AddPlaceDialog { get; }

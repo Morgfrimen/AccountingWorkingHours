@@ -3,6 +3,7 @@
 
     <Brush x:Key="BgTitleWindow">#252525</Brush>
     <Brush x:Key="BgMenuWindow">#2F3136</Brush>
+    <Brush x:Key="BgWindow">#36393F</Brush>
 
     <Style x:Key="BaseControl" TargetType="Control">
         <Setter Property="Foreground" Value="Gray" />

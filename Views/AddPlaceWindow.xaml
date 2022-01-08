@@ -4,7 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AccountingWorkingHours.Views"
+        xmlns:viewModels="clr-namespace:AccountingWorkingHours.ViewModels"
         mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=viewModels:AddPlaceWindowViewModes}"
         Style="{StaticResource DialogWindow}" >
     <Grid>
         <Grid.RowDefinitions>
@@ -14,6 +16,7 @@
         </Grid.RowDefinitions>
 
         <Border Grid.Row="0"
+                MouseDown="Border_MouseDown"
                 Background="{StaticResource BgTitleWindow}">
             <Label Content="Добавить объект"
                    FontSize="15"
@@ -44,7 +47,15 @@
 
         <StackPanel Orientation="Horizontal" Grid.Row="2">
             <Button Style="{StaticResource ButtonFooter}">ОК</Button>
-            <Button Style="{StaticResource ButtonFooter}">Отмена</Button>
+            <Button Style="{StaticResource ButtonFooter}"
+                    Content="Отмена"
+                    Command="ApplicationCommands.Close">
+                <Button.CommandBindings>
+                    <CommandBinding Command="Close" 
+                                    Executed="CommandBinding_OnExecuted" 
+                                    CanExecute="CommandBinding_OnCanExecute"/>
+                </Button.CommandBindings>
+            </Button>
         </StackPanel>
     </Grid>
 </Window>
