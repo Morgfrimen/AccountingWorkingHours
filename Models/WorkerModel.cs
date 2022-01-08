@@ -1,4 +1,5 @@
-﻿using AccountingWorkingHours.Models.Abstracts;
+﻿using System.Collections.Generic;
+using AccountingWorkingHours.Models.Abstracts;
 
 namespace AccountingWorkingHours.Models;
 
@@ -10,6 +11,7 @@ public class WorkerModel : IWorkerModel
         ImageSource = imageSource;
     }
 
-    public string Name { get; }
-    public string? ImageSource { get; }
+    public string Name { get; set; }
+    public string? ImageSource { get; set; }
+    public IList<IPlaceModel> Places { get; set; }
 }
