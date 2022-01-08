@@ -4,11 +4,12 @@ using AccountingWorkingHours.ViewModels.Abstracts;
 using AccountingWorkingHours.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 
 namespace AccountingWorkingHours;
 
 /// <summary>
-/// Interaction logic for App.xaml
+///     Interaction logic for App.xaml
 /// </summary>
 public partial class App : Application
 {
@@ -16,21 +17,29 @@ public partial class App : Application
 
     public App()
     {
-        Host = Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder().ConfigureServices(service =>
-        {
-            service.AddScoped<IMainWindowViewModel, MainWindowViewModel>();
-            service.AddTransient<IAddPlaceWindowViewModel, AddPlaceWindowViewModes>();
+        Host = Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder()
 
-            service.AddSingleton<MainWindow>();
-        }).Build();
+            .ConfigureServices(service =>
+            {
+                service.AddScoped<IMainWindowViewModel, MainWindowViewModel>();
+                service.AddTransient<IAddPlaceWindowViewModel, AddPlaceWindowViewModes>();
+
+                service.AddSingleton<MainWindow>();
+            })
+            .UseSerilog((hostingContext, _, loggerConfiguration) => loggerConfiguration
+                .ReadFrom.Configuration(hostingContext.Configuration)
+                .Enrich.FromLogContext()
+                .WriteTo.File("logs.log", rollingInterval: RollingInterval.Day))
+            .Build();
     }
-        
+
     protected override async void OnExit(ExitEventArgs e)
     {
         using (Host)
         {
             await Host.StopAsync();
         }
+
         base.OnExit(e);
     }
 

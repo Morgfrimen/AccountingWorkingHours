@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using AccountingWorkingHours.ViewModels.Abstracts;
+using Microsoft.Extensions.Logging;
 
 namespace AccountingWorkingHours.Views;
 
@@ -9,10 +10,14 @@ namespace AccountingWorkingHours.Views;
 /// </summary>
 public partial class MainWindow : Window
 {
-    public MainWindow(IMainWindowViewModel vm)
+    private readonly ILogger<MainWindow> _logger;
+
+    public MainWindow(IMainWindowViewModel vm, ILogger<MainWindow> logger)
     {
         InitializeComponent();
         DataContext = vm;
+        _logger = logger;
+        _logger.Log(LogLevel.Information, "Запуск приложения!");
     }
 
     private void Border_MouseDown(object sender, MouseButtonEventArgs e)
