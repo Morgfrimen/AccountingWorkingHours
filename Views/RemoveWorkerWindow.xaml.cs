@@ -6,9 +6,9 @@ namespace AccountingWorkingHours.Views;
 /// <summary>
 ///     Логика взаимодействия для AddWorkerWindow.xaml
 /// </summary>
-public partial class AddWorkerWindow : Window
+public partial class RemoveWorkerWindow : Window
 {
-    public AddWorkerWindow()
+    public RemoveWorkerWindow()
     {
         InitializeComponent();
         //DataContext = (Application.Current as App)!.Host.Services.GetService<IAddPlaceWindowViewModel>();

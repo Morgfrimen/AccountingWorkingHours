@@ -4,11 +4,11 @@ using System.Windows.Input;
 namespace AccountingWorkingHours.Views;
 
 /// <summary>
-///     Логика взаимодействия для AddWorkerWindow.xaml
+///     Логика взаимодействия для AddPlaceWindow.xaml
 /// </summary>
-public partial class AddWorkerWindow : Window
+public partial class RemovePlaceWindow : Window
 {
-    public AddWorkerWindow()
+    public RemovePlaceWindow()
     {
         InitializeComponent();
         //DataContext = (Application.Current as App)!.Host.Services.GetService<IAddPlaceWindowViewModel>();

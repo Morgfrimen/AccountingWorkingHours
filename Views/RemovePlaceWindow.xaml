@@ -1,12 +1,10 @@
-﻿<Window x:Class="AccountingWorkingHours.Views.AddPlaceWindow"
+﻿<Window x:Class="AccountingWorkingHours.Views.RemovePlaceWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewModels="clr-namespace:AccountingWorkingHours.ViewModels"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        d:DataContext="{d:DesignInstance Type=viewModels:AddPlaceWindowViewModes}"
         Style="{StaticResource DialogWindow}">
     <Grid>
         <Grid.RowDefinitions>
@@ -18,7 +16,7 @@
         <Border Grid.Row="0"
                 MouseDown="Border_MouseDown"
                 Background="{StaticResource BgTitleWindow}">
-            <Label Content="Добавить объект"
+            <Label Content="Удаление объекта"
                    FontSize="15"
                    VerticalAlignment="Center"
                    Margin="10,0,0,0"
@@ -26,28 +24,23 @@
                    FontWeight="Medium" />
         </Border>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
+        <StackPanel HorizontalAlignment="Center"
+                    Grid.Row="1"
+                    Orientation="Horizontal">
             <Label VerticalAlignment="Center"
-                   Width="190"
                    Foreground="Gray"
                    FontSize="14"
                    FontWeight="Medium"
-                   Content="Введите название объекта:"
-                   Margin="20,0,0,5" />
-            <TextBox Height="20"
-                     Background="Transparent"
-                     Foreground="Gray"
-                     Margin="0,0,0,5"
-                     FontSize="14"
-                     FontWeight="Medium"
-                     MaxLength="20"
-                     Width="180" />
+                   HorizontalAlignment="Center"
+                   Content="Вы действительно хотите удалить объект?" />
+
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="2">
-            <Button Style="{StaticResource ButtonFooter}">ОК</Button>
             <Button Style="{StaticResource ButtonFooter}"
-                    Content="Отмена"
+                    Content="Да" />
+            <Button Style="{StaticResource ButtonFooter}"
+                    Content="Нет"
                     Command="ApplicationCommands.Close">
                 <Button.CommandBindings>
                     <CommandBinding Command="Close"

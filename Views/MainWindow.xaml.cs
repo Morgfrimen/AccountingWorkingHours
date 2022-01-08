@@ -5,7 +5,7 @@ using AccountingWorkingHours.ViewModels.Abstracts;
 namespace AccountingWorkingHours.Views;
 
 /// <summary>
-/// Interaction logic for MainWindow.xaml
+///     Interaction logic for MainWindow.xaml
 /// </summary>
 public partial class MainWindow : Window
 {
@@ -33,7 +33,9 @@ public partial class MainWindow : Window
 
     private void WindowStateButton_Click(object sender, RoutedEventArgs e)
     {
-        Application.Current.MainWindow!.WindowState = Application.Current.MainWindow!.WindowState is not WindowState.Maximized ? 
-            WindowState.Maximized : WindowState.Normal;
+        Application.Current.MainWindow!.WindowState =
+            Application.Current.MainWindow!.WindowState is not WindowState.Maximized
+                ? WindowState.Maximized
+                : WindowState.Normal;
     }
 }

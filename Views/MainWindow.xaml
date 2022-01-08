@@ -14,7 +14,7 @@
         Background="{StaticResource BgWindow}"
         d:DataContext="{d:DesignInstance Type=vm:MainWindowViewModel}">
     <Window.Resources>
-        
+
     </Window.Resources>
 
     <Grid>
@@ -38,24 +38,24 @@
 
             <Grid HorizontalAlignment="Stretch">
                 <TextBlock Text="Табель рабочего времени"
-                       Foreground="Gray"
-                       FontWeight="SemiBold"
-                       VerticalAlignment="Center"
-                       FontSize="14"
-                       Padding="15,0,0,0"
-                       Margin="0,-3,0,0" />
+                           Foreground="Gray"
+                           FontWeight="SemiBold"
+                           VerticalAlignment="Center"
+                           FontSize="14"
+                           Padding="15,0,0,0"
+                           Margin="0,-3,0,0" />
 
                 <StackPanel HorizontalAlignment="Right"
                             Orientation="Horizontal">
                     <StackPanel.Resources>
                         <Style TargetType="Button">
-                            <Setter Property="FontSize" Value="16"></Setter>
-                            <Setter Property="Width" Value="25"></Setter>
-                            <Setter Property="Height" Value="25"></Setter>
-                            <Setter Property="FontWeight" Value="Bold"></Setter>
-                            <Setter Property="Foreground" Value="Gray"></Setter>
-                            <Setter Property="Background" Value="Transparent"></Setter>
-                            <Setter Property="BorderThickness" Value="0"></Setter>
+                            <Setter Property="FontSize" Value="16" />
+                            <Setter Property="Width" Value="25" />
+                            <Setter Property="Height" Value="25" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="Foreground" Value="Gray" />
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="BorderThickness" Value="0" />
                         </Style>
                     </StackPanel.Resources>
 
@@ -116,17 +116,17 @@
                         Background="Transparent"
                         Foreground="Gray"
                         FontWeight="Medium"
-                        FontSize="13" 
-                        Command="{Binding AddWorkerDialog}"/>
+                        FontSize="13"
+                        Command="{Binding AddWorkerDialog}" />
 
-                <Button x:Name="RemoveWorkerBtn"
-                        Content="Удалить сотрудника"
+                <Button Content="Удалить сотрудника"
                         Height="30"
                         BorderThickness="0"
                         Background="Transparent"
                         Foreground="Gray"
                         FontWeight="Medium"
-                        FontSize="13" />
+                        FontSize="13"
+                        Command="{Binding RemoveWorkerDialog}"/>
 
             </StackPanel>
         </Grid>
@@ -176,16 +176,16 @@
                         Foreground="Gray"
                         FontWeight="Medium"
                         FontSize="13"
-                        Command="{Binding AddPlaceDialog}"/>
+                        Command="{Binding AddPlaceDialog}" />
 
-                <Button x:Name="RemovePlaceBtn"
-                        Content="Удалить объект"
+                <Button Content="Удалить объект"
                         Height="30"
                         BorderThickness="0"
                         Background="Transparent"
                         Foreground="Gray"
                         FontWeight="Medium"
-                        FontSize="13" />
+                        FontSize="13" 
+                        Command="{Binding RemovePlaceDialog}"/>
 
 
             </StackPanel>
@@ -197,12 +197,12 @@
               Grid.RowSpan="2">
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="150"/>
-                <RowDefinition/>
-                <RowDefinition Height="75"/>
+                <RowDefinition Height="150" />
+                <RowDefinition />
+                <RowDefinition Height="75" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <DataGrid Grid.Row="1"
@@ -214,9 +214,9 @@
                       AutoGenerateColumns="False"
                       Height="{Binding}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Дата" Width="*"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Объект" Width="*"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Оплата" Width="*"> </DataGridTextColumn>
+                    <DataGridTextColumn Header="Дата" Width="*" />
+                    <DataGridTextColumn Header="Объект" Width="*" />
+                    <DataGridTextColumn Header="Оплата" Width="*" />
                     <DataGridTemplateColumn Width="0.25*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -232,32 +232,29 @@
 
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="25" />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
 
                 <Border Grid.ColumnSpan="2"
-                    Background="#2F3136">
+                        Background="#2F3136">
                     <Label Content="{Binding SelectPlace}"
                            VerticalAlignment="Center"
                            FontWeight="Medium"
                            Foreground="Gray"
                            Margin="8,-3,0,0"
-                           FontSize="15"/>
+                           FontSize="15" />
 
                 </Border>
 
                 <ListView x:Name="WorkersOfPlace"
                           Grid.Row="1"
                           Background="Transparent"
-                          BorderThickness="0"
-                          >
-
-                </ListView>
+                          BorderThickness="0" />
 
             </Grid>
 
