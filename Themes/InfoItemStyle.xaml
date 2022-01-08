@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style TargetType="ListViewItem" x:Key="InfoStyle">
+
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="#292b2f"/>
+            </Trigger>
+        </Style.Triggers>
+        <Setter Property="Background" Value="#393B40"/>
+        
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListViewItem">
+                    <Border Background="{TemplateBinding Background}" BorderThickness="0,0,0,1" BorderBrush="Gray"  Padding="0,4">
+                        <Grid>
+                            <GridViewRowPresenter TextBlock.Foreground="Gray" TextBlock.FontSize="15"/>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+</ResourceDictionary>
+
+

@@ -1,0 +1,17 @@
+﻿<Application x:Class="AccountingWorkingHours.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:AccountingWorkingHours"
+             Startup="OnStartup">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="./Themes/WorkerCard.xaml"/>
+                <ResourceDictionary Source="./Themes/PlaceCard.xaml"/>
+                <ResourceDictionary Source="./Themes/HeaderStyle.xaml"/>
+                <ResourceDictionary Source="./Themes/InfoItemStyle.xaml"/>
+                <ResourceDictionary Source="./Themes/WindowStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
