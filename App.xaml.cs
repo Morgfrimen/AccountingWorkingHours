@@ -19,10 +19,9 @@ namespace AccountingWorkingHours
             Host = Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder().ConfigureServices(service =>
             {
                 service.AddScoped<IMainWindowViewModel, MainWindowViewModel>();
-                service.AddScoped<IAddPlaceWindowViewModel, AddPlaceWindowViewModes>();
+                service.AddTransient<IAddPlaceWindowViewModel, AddPlaceWindowViewModes>();
 
                 service.AddSingleton<MainWindow>();
-                service.AddTransient<AddPlaceWindow>();
             }).Build();
         }
         
