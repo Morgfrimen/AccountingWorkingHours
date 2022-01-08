@@ -12,25 +12,25 @@ public sealed class MainWindowViewModel : BaseViewModel, IMainWindowViewModel
         AddPlaceDialog = new RelayCommand(obj =>
         {
             AddPlaceWindow addPlaceWindow = new();
-            addPlaceWindow.ShowDialog();
+            _ = addPlaceWindow.ShowDialog();
         });
 
         AddWorkerDialog = new RelayCommand(obj =>
         {
             AddWorkerWindow addWorkerWindow = new();
-            addWorkerWindow.ShowDialog();
+            _ = addWorkerWindow.ShowDialog();
         });
 
         RemovePlaceDialog = new RelayCommand(obj =>
         {
             RemovePlaceWindow removePlaceWindow = new();
-            removePlaceWindow.ShowDialog();
+            _ = removePlaceWindow.ShowDialog();
         });
 
         RemoveWorkerDialog = new RelayCommand(obj =>
         {
             RemoveWorkerWindow removeWorkerWindow = new();
-            removeWorkerWindow.ShowDialog();
+            _ = removeWorkerWindow.ShowDialog();
         });
     }
 

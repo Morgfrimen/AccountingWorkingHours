@@ -21,9 +21,9 @@ public partial class App : Application
     {
         Host = Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder().ConfigureServices(service =>
         {
-            service.AddScoped<IMainWindowViewModel, MainWindowViewModel>();
-            service.AddTransient<IAddPlaceWindowViewModel, AddPlaceWindowViewModes>();
-            service.AddSingleton<MainWindow>();
+            _ = service.AddScoped<IMainWindowViewModel, MainWindowViewModel>();
+            _ = service.AddTransient<IAddPlaceWindowViewModel, AddPlaceWindowViewModes>();
+            _ = service.AddSingleton<MainWindow>();
         }).UseSerilog((hostingContext, _, loggerConfiguration) => loggerConfiguration.ReadFrom
             .Configuration(hostingContext.Configuration).Enrich.FromLogContext().WriteTo
             .File("logs.log", rollingInterval: RollingInterval.Day)).Build();
@@ -33,7 +33,7 @@ public partial class App : Application
 
     protected override void OnStartup(StartupEventArgs e)
     {
-        CheckFolderAndFileAsync().ConfigureAwait(false);
+        _ = CheckFolderAndFileAsync().ConfigureAwait(false);
         base.OnStartup(e);
     }
 
@@ -57,17 +57,17 @@ public partial class App : Application
     {
         var logger = Host.Services.GetService<ILogger>();
         logger!.Error(e.Exception, "Произошла глобальная/необработанная ошибка");
-        MessageBox.Show("Произошла ошибка в работе приложения", "Критическая ошибка", MessageBoxButton.OK,
+        _ = MessageBox.Show("Произошла ошибка в работе приложения", "Критическая ошибка", MessageBoxButton.OK,
             MessageBoxImage.Error);
     }
 
-    private Task CheckFolderAndFileAsync()
+    private static Task CheckFolderAndFileAsync()
     {
         return Task.Run(() =>
         {
             var path = Path.Combine(Environment.CurrentDirectory, "Data");
             if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
+                _ = Directory.CreateDirectory(path);
         });
     }
 }

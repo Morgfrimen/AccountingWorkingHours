@@ -16,5 +16,5 @@ public class PlaceModel : IPlaceModel
     public string NamePlace { get; set; }
     public DateOnly Date { get; set; }
     public string? ImageSource { get; set; }
-    public IList<IWorkerModel> Workers { get; set; }
+    public IList<IWorkerModel>? Workers { get; set; }
 }

@@ -9,5 +9,5 @@ public interface IPlaceModel
     public DateOnly Date { get; set; }
     public string? ImageSource { get; set; } //TODO: Затычка
 
-    public IList<IWorkerModel> Workers { get; set; }
+    public IList<IWorkerModel>? Workers { get; set; }
 }

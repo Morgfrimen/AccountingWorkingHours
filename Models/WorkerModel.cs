@@ -13,5 +13,5 @@ public class WorkerModel : IWorkerModel
 
     public string Name { get; set; }
     public string? ImageSource { get; set; }
-    public IList<IPlaceModel> Places { get; set; }
+    public IList<IPlaceModel>? Places { get; set; }
 }
