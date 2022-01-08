@@ -19,7 +19,7 @@
         <Border Grid.Row="0"
                 MouseDown="Border_MouseDown"
                 Background="{StaticResource BgTitleWindow}">
-            <Label Content="Добавить объект"
+            <Label Content="Добавить сотрудника"
                    FontSize="15"
                    VerticalAlignment="Center"
                    Margin="10,0,0,0"
