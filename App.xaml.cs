@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Threading;
 using AccountingWorkingHours.ViewModels;
 using AccountingWorkingHours.ViewModels.Abstracts;
 using AccountingWorkingHours.Views;
@@ -43,9 +44,20 @@ public partial class App : Application
         base.OnExit(e);
     }
 
+
+
+
     private void OnStartup(object sender, StartupEventArgs e)
     {
         var mainWindow = Host.Services.GetService<MainWindow>();
         mainWindow!.Show();
+    }
+
+    private void App_OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+    {
+        var logger = Host.Services.GetService<ILogger>();
+        logger!.Error(e.Exception, "Произошла глобальная/необработанная ошибка ошибка");
+        MessageBox.Show("Произошла ошибка в работе приложения", "Критическая ошибка", MessageBoxButton.OK,
+            MessageBoxImage.Error);
     }
 }
