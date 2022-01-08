@@ -6,6 +6,13 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Style="{StaticResource DialogWindow}">
+
+    <Window.CommandBindings>
+        <CommandBinding Command="{StaticResource ExitCommand}"
+                        Executed="CommandBinding_OnExecuted"
+                        CanExecute="CommandBinding_OnCanExecute" />
+    </Window.CommandBindings>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.25*" />
@@ -46,12 +53,8 @@
             <Button Style="{StaticResource ButtonFooter}">ОК</Button>
             <Button Style="{StaticResource ButtonFooter}"
                     Content="Отмена"
-                    Command="ApplicationCommands.Close">
-                <Button.CommandBindings>
-                    <CommandBinding Command="Close"
-                                    Executed="CommandBinding_OnExecuted"
-                                    CanExecute="CommandBinding_OnCanExecute" />
-                </Button.CommandBindings>
+                    Command="{StaticResource ExitCommand}">
+               
             </Button>
         </StackPanel>
     </Grid>

@@ -5,6 +5,7 @@
              Startup="OnStartup">
     <Application.Resources>
         <ResourceDictionary>
+            <RoutedCommand x:Key="ExitCommand"></RoutedCommand>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/WorkerCardStyle.xaml" />
                 <ResourceDictionary Source="Styles/PlaceCardStyle.xaml" />
