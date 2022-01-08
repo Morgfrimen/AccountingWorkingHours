@@ -11,7 +11,7 @@ public sealed class MainWindowViewModel : BaseViewModel, IMainWindowViewModel
 
     public MainWindowViewModel(AddPlaceWindow addPlaceWindow)
     {
-        _addPlaceDialog = new RelayCommand((obg)=>{ addPlaceWindow.Show();});
+        _addPlaceDialog = new RelayCommand((obj)=>{ addPlaceWindow.Show();});
     }
 
     public ICommand AddPlaceDialog => _addPlaceDialog;
