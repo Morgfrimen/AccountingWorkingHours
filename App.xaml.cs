@@ -3,6 +3,8 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using AccountingWorkingHours.Mapping;
+using AccountingWorkingHours.Service;
 using AccountingWorkingHours.ViewModels;
 using AccountingWorkingHours.ViewModels.Abstracts;
 using AccountingWorkingHours.Views;
@@ -21,19 +23,25 @@ public partial class App : Application
     {
         Host = Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder().ConfigureServices(service =>
         {
-            _ = service.AddScoped<IMainWindowViewModel, MainWindowViewModel>();
-            _ = service.AddSingleton<MainWindow>();
+            service.AddAutoMapper(typeof(AutoMapperProfile));
+
+            service.AddTransient<IMainWindowViewModel, MainWindowViewModel>();
+            service.AddSingleton<SaveDataService>();
+
+            service.AddSingleton<MainWindow>();
         }).UseSerilog((hostingContext, _, loggerConfiguration) => loggerConfiguration.ReadFrom
             .Configuration(hostingContext.Configuration).Enrich.FromLogContext().WriteTo
             .File("logs.log", rollingInterval: RollingInterval.Day)).Build();
     }
 
-    public IHost Host { get; }
+    private IHost Host { get; }
 
     protected override void OnStartup(StartupEventArgs e)
     {
         _ = CheckFolderAndFileAsync().ConfigureAwait(false);
         base.OnStartup(e);
+        var saveHostedService = Host.Services.GetService<SaveDataService>();
+        saveHostedService.StartAsync(default);
     }
 
     protected override async void OnExit(ExitEventArgs e)

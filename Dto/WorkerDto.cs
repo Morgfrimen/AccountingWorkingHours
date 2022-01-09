@@ -1,17 +1,16 @@
-﻿using System.Collections.Generic;
-using AccountingWorkingHours.Models;
-using AccountingWorkingHours.Models.Abstracts;
+﻿using System;
 
 namespace AccountingWorkingHours.Dto;
 
+[Serializable]
 public class WorkerDto
 {
-    public WorkerDto(IList<IWorkerModel> workerModels, string name)
-    {
-        WorkerModels = workerModels;
-        Worker = new WorkerModel(name);
-    }
+    /// <summary>
+    /// Для сериализации
+    /// </summary>
+    public WorkerDto() { }
 
-    public IList<IWorkerModel> WorkerModels { get; }
-    public IWorkerModel Worker { get; }
+    public string Name { get; set; }
+    public DateOnly Date { get; set; }
+    public string ImageSource { get; set; }
 }
