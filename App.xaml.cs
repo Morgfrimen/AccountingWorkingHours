@@ -43,7 +43,7 @@ public partial class App : Application
         base.OnStartup(e);
         _ = Task.Run(async () =>
         {
-            while (true)
+            while (!_stopBackTask)
             {
                 var service = Host.Services.GetService<ISaveDataService>();
                 service!.SaveWorkers(Host.Services.GetService<IMainWindowViewModel>()!.WorkerModels);
@@ -52,13 +52,12 @@ public partial class App : Application
         });
     }
 
+    private bool _stopBackTask = false;
+
     protected override async void OnExit(ExitEventArgs e)
     {
-        using (Host)
-        {
-            await Host.StopAsync();
-        }
-
+        _stopBackTask = true;
+        using (Host) await Host.StopAsync();
         base.OnExit(e);
     }
 
