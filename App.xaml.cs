@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using AccountingWorkingHours.Mapping;
+using AccountingWorkingHours.Service;
+using AccountingWorkingHours.Service.Abstract;
 using AccountingWorkingHours.ViewModels;
 using AccountingWorkingHours.ViewModels.Abstracts;
 using AccountingWorkingHours.Views;
@@ -24,7 +26,8 @@ public partial class App : Application
         {
             service.AddAutoMapper(typeof(AutoMapperProfile));
 
-            service.AddTransient<IMainWindowViewModel, MainWindowViewModel>();
+            service.AddSingleton<IMainWindowViewModel, MainWindowViewModel>();
+            service.AddTransient<ISaveDataService, SaveDataService>();
 
             service.AddSingleton<MainWindow>();
         }).UseSerilog((hostingContext, _, loggerConfiguration) => loggerConfiguration.ReadFrom
@@ -38,6 +41,15 @@ public partial class App : Application
     {
         _ = CheckFolderAndFileAsync().ConfigureAwait(false);
         base.OnStartup(e);
+        _ = Task.Run(async () =>
+        {
+            while (true)
+            {
+                var service = Host.Services.GetService<ISaveDataService>();
+                service!.SaveWorkers(Host.Services.GetService<IMainWindowViewModel>()!.WorkerModels);
+                await Task.Delay(new TimeSpan(0, 2, 0));
+            }
+        });
     }
 
     protected override async void OnExit(ExitEventArgs e)

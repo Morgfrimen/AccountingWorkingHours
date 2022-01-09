@@ -18,6 +18,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Folder Include="Service\Abstract\" />
 		<Folder Include="ViewModels\Abstracts\" />
 		<Folder Include="Dto\" />
 	</ItemGroup>
