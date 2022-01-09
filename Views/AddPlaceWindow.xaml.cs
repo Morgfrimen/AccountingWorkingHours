@@ -1,7 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Input;
-using AccountingWorkingHours.ViewModels.Abstracts;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace AccountingWorkingHours.Views;
 
@@ -13,7 +11,6 @@ public partial class AddPlaceWindow : Window
     public AddPlaceWindow()
     {
         InitializeComponent();
-        DataContext = (Application.Current as App)!.Host.Services.GetService<IAddPlaceWindowViewModel>();
     }
 
     private void CommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)

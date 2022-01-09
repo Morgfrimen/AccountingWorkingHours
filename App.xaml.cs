@@ -22,7 +22,6 @@ public partial class App : Application
         Host = Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder().ConfigureServices(service =>
         {
             _ = service.AddScoped<IMainWindowViewModel, MainWindowViewModel>();
-            _ = service.AddTransient<IAddPlaceWindowViewModel, AddPlaceWindowViewModes>();
             _ = service.AddSingleton<MainWindow>();
         }).UseSerilog((hostingContext, _, loggerConfiguration) => loggerConfiguration.ReadFrom
             .Configuration(hostingContext.Configuration).Enrich.FromLogContext().WriteTo

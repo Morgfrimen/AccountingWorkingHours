@@ -94,7 +94,11 @@
             <ListView Background="Transparent"
                       BorderThickness="0"
                       Grid.Row="1"
-                      ItemContainerStyle="{StaticResource WorkerCard}" />
+                      ItemContainerStyle="{StaticResource WorkerCard}" 
+                      ItemsSource="{Binding WorkerModels, Mode=TwoWay, 
+                UpdateSourceTrigger=PropertyChanged}"
+                      SelectedItem="{Binding SelectedWorker, Mode=TwoWay, 
+                UpdateSourceTrigger=PropertyChanged}"/>
 
             <StackPanel Grid.Row="2"
                         Orientation="Vertical"

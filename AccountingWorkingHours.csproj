@@ -19,6 +19,7 @@
 
 	<ItemGroup>
 		<Folder Include="ViewModels\Abstracts\" />
+		<Folder Include="Dto\" />
 	</ItemGroup>
 
 	<ItemGroup>
