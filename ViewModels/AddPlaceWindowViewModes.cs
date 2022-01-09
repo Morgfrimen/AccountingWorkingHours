@@ -2,6 +2,6 @@
 
 namespace AccountingWorkingHours.ViewModels;
 
-public sealed class AddPlaceWindowViewModes : BaseViewModel, IAddPlaceWindowViewModel
+public sealed class AddPlaceWindowViewModes : BaseViewModel
 {
 }

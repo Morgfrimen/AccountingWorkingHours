@@ -3,7 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:AccountingWorkingHours.ViewModels"
         mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=vm:AddWorkerWindowViewModes}"
         WindowStartupLocation="CenterScreen"
         Style="{StaticResource DialogWindow}">
 
@@ -46,15 +48,20 @@
                      FontSize="14"
                      FontWeight="Medium"
                      MaxLength="20"
-                     Width="180" />
+                     Width="180"
+                     Text="{Binding Name, 
+                Mode=TwoWay,
+                UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="2">
-            <Button Style="{StaticResource ButtonFooter}">ОК</Button>
             <Button Style="{StaticResource ButtonFooter}"
-                    Content="Отмена"
+                    Content="OK" 
+                    Command="{Binding AddWorker}"/>
+            <Button Style="{StaticResource ButtonFooter}"
+                    Content="Закрыть"
                     Command="{StaticResource ExitCommand}">
-               
+
             </Button>
         </StackPanel>
     </Grid>

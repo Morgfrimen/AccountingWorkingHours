@@ -6,7 +6,6 @@
         xmlns:viewModels="clr-namespace:AccountingWorkingHours.ViewModels"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        d:DataContext="{d:DesignInstance Type=viewModels:AddPlaceWindowViewModes}"
         Style="{StaticResource DialogWindow}">
 
     <Window.CommandBindings>
@@ -14,6 +13,10 @@
                         Executed="CommandBinding_OnExecuted"
                         CanExecute="CommandBinding_OnCanExecute" />
     </Window.CommandBindings>
+
+    <Window.DataContext>
+        <viewModels:AddPlaceWindowViewModes />
+    </Window.DataContext>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -54,7 +57,7 @@
         <StackPanel Orientation="Horizontal" Grid.Row="2">
             <Button Style="{StaticResource ButtonFooter}">ОК</Button>
             <Button Style="{StaticResource ButtonFooter}"
-                    Content="Отмена"
+                    Content="Закрыть"
                     Command="{StaticResource ExitCommand}">
             </Button>
         </StackPanel>

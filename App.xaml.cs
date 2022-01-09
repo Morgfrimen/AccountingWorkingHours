@@ -3,6 +3,9 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using AccountingWorkingHours.Mapping;
+using AccountingWorkingHours.Service;
+using AccountingWorkingHours.Service.Abstract;
 using AccountingWorkingHours.ViewModels;
 using AccountingWorkingHours.ViewModels.Abstracts;
 using AccountingWorkingHours.Views;
@@ -21,29 +24,40 @@ public partial class App : Application
     {
         Host = Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder().ConfigureServices(service =>
         {
-            _ = service.AddScoped<IMainWindowViewModel, MainWindowViewModel>();
-            _ = service.AddTransient<IAddPlaceWindowViewModel, AddPlaceWindowViewModes>();
-            _ = service.AddSingleton<MainWindow>();
+            service.AddAutoMapper(typeof(AutoMapperProfile));
+
+            service.AddSingleton<IMainWindowViewModel, MainWindowViewModel>();
+            service.AddTransient<ISaveDataService, SaveDataService>();
+
+            service.AddSingleton<MainWindow>();
         }).UseSerilog((hostingContext, _, loggerConfiguration) => loggerConfiguration.ReadFrom
             .Configuration(hostingContext.Configuration).Enrich.FromLogContext().WriteTo
             .File("logs.log", rollingInterval: RollingInterval.Day)).Build();
     }
 
-    public IHost Host { get; }
+    private IHost Host { get; }
 
     protected override void OnStartup(StartupEventArgs e)
     {
         _ = CheckFolderAndFileAsync().ConfigureAwait(false);
         base.OnStartup(e);
+        _ = Task.Run(async () =>
+        {
+            while (!_stopBackTask)
+            {
+                var service = Host.Services.GetService<ISaveDataService>();
+                service!.SaveWorkers(Host.Services.GetService<IMainWindowViewModel>()!.WorkerModels);
+                await Task.Delay(new TimeSpan(0, 2, 0));
+            }
+        });
     }
+
+    private bool _stopBackTask = false;
 
     protected override async void OnExit(ExitEventArgs e)
     {
-        using (Host)
-        {
-            await Host.StopAsync();
-        }
-
+        _stopBackTask = true;
+        using (Host) await Host.StopAsync();
         base.OnExit(e);
     }
 

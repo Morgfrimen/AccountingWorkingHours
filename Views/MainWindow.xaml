@@ -21,7 +21,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
             <RowDefinition />
-            <RowDefinition Height="200" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -81,7 +81,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="50" />
                 <RowDefinition />
-                <RowDefinition Height="90" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Label Content="Сотрудники"
@@ -94,21 +94,16 @@
             <ListView Background="Transparent"
                       BorderThickness="0"
                       Grid.Row="1"
-                      ItemContainerStyle="{StaticResource WorkerCard}" />
+                      ItemContainerStyle="{StaticResource WorkerCard}" 
+                      ItemsSource="{Binding WorkerModels, Mode=TwoWay, 
+                UpdateSourceTrigger=PropertyChanged}"
+                      SelectedItem="{Binding SelectedWorker, Mode=TwoWay, 
+                UpdateSourceTrigger=PropertyChanged}"/>
 
             <StackPanel Grid.Row="2"
                         Orientation="Vertical"
                         Background="#292B2F">
-                <Button x:Name="InfoWorkerBtn"
-                        Content="Показать информацию"
-                        Height="30"
-                        BorderThickness="0"
-                        Background="Transparent"
-                        Foreground="Gray"
-                        FontWeight="Medium"
-                        FontSize="13" />
-                <Button x:Name="AddWorkerBtn"
-                        Content="Добавить сотрудника"
+                <Button Content="Добавить сотрудника"
                         Height="30"
                         BorderThickness="0"
                         Background="Transparent"
@@ -136,7 +131,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="50" />
                 <RowDefinition />
-                <RowDefinition Height="90" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Label Content="Объекты"
@@ -155,14 +150,6 @@
             <StackPanel Grid.Row="2"
                         Orientation="Vertical"
                         Background="#292B2F">
-                <Button x:Name="ShowPlaceInfoBtn"
-                        Content="Показать информацию"
-                        Height="30"
-                        BorderThickness="0"
-                        Background="Transparent"
-                        Foreground="Gray"
-                        FontWeight="Medium"
-                        FontSize="13" />
 
                 <Button x:Name="AddPlaceBtn"
                         Content="Добавить объект"

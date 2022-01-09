@@ -4,7 +4,7 @@ using AccountingWorkingHours.Models.Abstracts;
 
 namespace AccountingWorkingHours.Models;
 
-public class PlaceModel : IPlaceModel
+public sealed class PlaceModel : IPlaceModel
 {
     public PlaceModel(string namePlace, DateOnly date, string? imageSource = null)
     {
