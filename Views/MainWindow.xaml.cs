@@ -26,21 +26,12 @@ public partial class MainWindow : Window
             DragMove();
     }
 
-    private void CloseButton_Click(object sender, RoutedEventArgs e)
-    {
-        Application.Current.Shutdown();
-    }
+    private void CloseButton_Click(object sender, RoutedEventArgs e) => Application.Current.Shutdown();
 
-    private void ButtonMinimize_Click(object sender, RoutedEventArgs e)
-    {
-        Application.Current.MainWindow!.WindowState = WindowState.Minimized;
-    }
+    private void ButtonMinimize_Click(object sender, RoutedEventArgs e) => Application.Current.MainWindow!.WindowState = WindowState.Minimized;
 
-    private void WindowStateButton_Click(object sender, RoutedEventArgs e)
-    {
-        Application.Current.MainWindow!.WindowState =
+    private void WindowStateButton_Click(object sender, RoutedEventArgs e) => Application.Current.MainWindow!.WindowState =
             Application.Current.MainWindow!.WindowState is not WindowState.Maximized
                 ? WindowState.Maximized
                 : WindowState.Normal;
-    }
 }

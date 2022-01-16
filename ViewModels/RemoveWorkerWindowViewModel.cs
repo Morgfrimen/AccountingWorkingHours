@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 using AccountingWorkingHours.Commands;
+using AccountingWorkingHours.Models;
 using AccountingWorkingHours.Models.Abstracts;
 using AccountingWorkingHours.ViewModels.Abstracts;
 
@@ -9,13 +10,13 @@ namespace AccountingWorkingHours.ViewModels;
 
 public sealed class RemoveWorkerWindowViewModel : BaseViewModel
 {
-    public RemoveWorkerWindowViewModel(IList<IWorkerModel> workerModels, IWorkerModel? worker)
+    public RemoveWorkerWindowViewModel(IList<WorkerModel> workerModels, IWorkerModel? worker)
     {
         var model = worker;
         WorkerModels = workerModels;
         RemoveWorkerCommand = new RelayCommand(obj =>
         {
-            if (model is null || !WorkerModels.Remove(model))
+            if (model is null || !WorkerModels.Remove((WorkerModel)model))
             {
                 _ = MessageBox.Show("Сотрудник уже был удален", "Уведомление", MessageBoxButton.OK,
                     MessageBoxImage.Warning,
@@ -30,5 +31,5 @@ public sealed class RemoveWorkerWindowViewModel : BaseViewModel
     }
 
     public ICommand RemoveWorkerCommand { get; }
-    private IList<IWorkerModel> WorkerModels { get; }
+    private IList<WorkerModel> WorkerModels { get; }
 }

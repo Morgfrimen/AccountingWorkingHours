@@ -2,7 +2,6 @@
 using System.Windows.Input;
 using AccountingWorkingHours.Commands;
 using AccountingWorkingHours.Models;
-using AccountingWorkingHours.Models.Abstracts;
 using AccountingWorkingHours.ViewModels.Abstracts;
 
 namespace AccountingWorkingHours.ViewModels;
@@ -11,7 +10,7 @@ public sealed class AddWorkerWindowViewModes : BaseViewModel
 {
     private string? _name;
 
-    public AddWorkerWindowViewModes(IList<IWorkerModel> workerModels)
+    public AddWorkerWindowViewModes(IList<WorkerModel> workerModels)
     {
         WorkerModels = workerModels;
         AddWorker = new RelayCommand(obj =>
@@ -33,5 +32,5 @@ public sealed class AddWorkerWindowViewModes : BaseViewModel
         }
     }
 
-    private IList<IWorkerModel> WorkerModels { get; }
+    private IList<WorkerModel> WorkerModels { get; }
 }

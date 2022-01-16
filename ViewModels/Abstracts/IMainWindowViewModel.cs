@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
+using AccountingWorkingHours.Models;
 using AccountingWorkingHours.Models.Abstracts;
 
 namespace AccountingWorkingHours.ViewModels.Abstracts;
@@ -11,5 +13,5 @@ public interface IMainWindowViewModel
     public IList<IPlaceModel> PlaceModels { get; set; }
     public ICommand RemovePlaceDialog { get; }
     public ICommand RemoveWorkerDialog { get; }
-    public IList<IWorkerModel> WorkerModels { get; set; }
+    public ObservableCollection<WorkerModel> Workers { get; set; }
 }

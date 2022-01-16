@@ -1,10 +1,12 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using AccountingWorkingHours.Extension;
 using AccountingWorkingHours.Mapping;
+using AccountingWorkingHours.Models;
 using AccountingWorkingHours.Service;
 using AccountingWorkingHours.Service.Abstract;
 using AccountingWorkingHours.ViewModels;
@@ -24,16 +26,14 @@ public partial class App : Application
     private bool _stopBackTask;
 
     public App() => Host = Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder().ConfigureServices(service =>
-                  {
-                      _ = service.AddAutoMapper(typeof(AutoMapperProfile));
-
-                      _ = service.AddSingleton<IMainWindowViewModel, MainWindowViewModel>();
-                      _ = service.AddTransient<ISaveDataService, SaveDataService>();
-
-                      _ = service.AddSingleton<MainWindow>();
-                  }).UseSerilog((hostingContext, _, loggerConfiguration) => loggerConfiguration.ReadFrom
-                      .Configuration(hostingContext.Configuration).Enrich.FromLogContext().WriteTo
-                      .File("logs.log", rollingInterval: RollingInterval.Day)).Build();
+    {
+        _ = service.AddAutoMapper(typeof(AutoMapperProfile));
+        _ = service.AddSingleton<IMainWindowViewModel, MainWindowViewModel>();
+        _ = service.AddTransient<ISaveDataService, SaveDataService>();
+        _ = service.AddSingleton<MainWindow>();
+    }).UseSerilog((hostingContext, _, loggerConfiguration) => loggerConfiguration.ReadFrom
+        .Configuration(hostingContext.Configuration).Enrich.FromLogContext().WriteTo
+        .File("logs.log", rollingInterval: RollingInterval.Day)).Build();
 
     private IHost Host { get; }
 
@@ -41,18 +41,15 @@ public partial class App : Application
     {
         _ = CheckFolderAndFileAsync().ConfigureAwait(false);
         base.OnStartup(e);
-
         _ = Task.Run(async () =>
         {
             var service = Host.Services.GetService<ISaveDataService>();
             var mainVm = Host.Services.GetService<IMainWindowViewModel>()!;
-
             var workersSave = service!.GetWorkers();
-            mainVm.WorkerModels = workersSave!.ToObservableCollection();
-
+            mainVm.Workers = workersSave!.Cast<WorkerModel>().ToObservableCollection();
             while (!_stopBackTask)
             {
-                service.SaveWorkers(mainVm.WorkerModels);
+                service.SaveWorkers(mainVm.Workers);
                 await Task.Delay(new TimeSpan(0, 2, 0));
             }
         });
@@ -84,8 +81,8 @@ public partial class App : Application
     }
 
     private static Task CheckFolderAndFileAsync() => Task.Run(() =>
-                                                           {
-                                                               var path = Path.Combine(Environment.CurrentDirectory, "Data");
-                                                               if (!Directory.Exists(path)) _ = Directory.CreateDirectory(path);
-                                                           });
+    {
+        var path = Path.Combine(Environment.CurrentDirectory, "Data");
+        if (!Directory.Exists(path)) _ = Directory.CreateDirectory(path);
+    });
 }

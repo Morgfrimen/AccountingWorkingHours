@@ -25,7 +25,7 @@ public sealed class SaveDataService : ISaveDataService
         _logger = logger;
     }
 
-    public void SaveWorkers(IList<IWorkerModel> workers)
+    public void SaveWorkers(IList<WorkerModel> workers)
     {
         try
         {

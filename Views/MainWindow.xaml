@@ -15,9 +15,6 @@
     Style="{StaticResource MainWindow}"
     Background="{StaticResource BgWindow}"
     d:DataContext="{d:DesignInstance Type=vm:MainWindowViewModel}">
-    <Window.Resources>
-
-    </Window.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -128,7 +125,7 @@
                 BorderThickness="0"
                 Grid.Row="1"
                 ItemContainerStyle="{StaticResource WorkerCard}"
-                ItemsSource="{Binding WorkerModels, Mode=TwoWay, 
+                ItemsSource="{Binding Workers, Mode=TwoWay, 
                 UpdateSourceTrigger=PropertyChanged}"
                 SelectedItem="{Binding SelectedWorker, Mode=TwoWay, 
                 UpdateSourceTrigger=PropertyChanged}" />
@@ -243,27 +240,29 @@
             <DataGrid
                 Grid.Row="1"
                 Grid.RowSpan="2"
+                CanUserAddRows="True"
+                CanUserDeleteRows="True"
                 Background="Transparent"
                 BorderThickness="0"
                 VerticalAlignment="Stretch"
                 ColumnHeaderStyle="{StaticResource headerStyle}"
                 AutoGenerateColumns="False"
-                d:DataContext="{d:DesignInstance model:IWorkerInfo}"
-                ItemsSource="{Binding WorkerInfo,
+                
+                ItemsSource="{Binding SelectedWorker,
                 UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                 <DataGrid.Columns>
                     <DataGridTextColumn
                         Header="Дата"
                         Width="*"
-                        Binding="{Binding Date }" />
+                        Binding="{Binding SelectedWorker.Date }" />
                     <DataGridTextColumn
                         Header="Объект"
                         Width="*"
-                        Binding="{Binding Place.NamePlace}" />
+                        Binding="{Binding SelectedWorker.Place.NamePlace}" />
                     <DataGridTextColumn
                         Header="Оплата"
                         Width="*"
-                        Binding="{Binding Place}" />
+                        Binding="{Binding SelectedWorker.IsPrepaid}" />
                     <DataGridTemplateColumn
                         Width="0.25*">
                         <DataGridTemplateColumn.CellTemplate>

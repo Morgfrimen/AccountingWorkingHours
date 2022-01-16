@@ -6,6 +6,8 @@ namespace AccountingWorkingHours.Models;
 
 public sealed class WorkerModel : IWorkerModel, IWorkerInfo
 {
+    public WorkerModel() { }
+
     public WorkerModel(string? name, string? imageSource = null)
     {
         Name = name;

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows.Input;
 using AccountingWorkingHours.Commands;
+using AccountingWorkingHours.Models;
 using AccountingWorkingHours.Models.Abstracts;
 using AccountingWorkingHours.ViewModels.Abstracts;
 using AccountingWorkingHours.Views;
@@ -13,9 +13,8 @@ public sealed class MainWindowViewModel : BaseViewModel, IMainWindowViewModel
 {
     private IList<IPlaceModel> _placeModels;
     private IPlaceModel? _selectedPlace;
-    private IWorkerModel? _selectedWorker;
-    private IList<IWorkerInfo> _workerInfos;
-    private IList<IWorkerModel> _workerModels;
+    private WorkerModel? _selectedWorker;
+    private ObservableCollection<WorkerModel> _workerModels;
 
     public MainWindowViewModel()
     {
@@ -43,16 +42,15 @@ public sealed class MainWindowViewModel : BaseViewModel, IMainWindowViewModel
             _ = removeWorkerWindow.ShowDialog();
         });
 
-        _workerModels ??= new ObservableCollection<IWorkerModel>();
+        _workerModels ??= new ObservableCollection<WorkerModel>();
         _placeModels ??= new ObservableCollection<IPlaceModel>();
-        _workerInfos ??= new ObservableCollection<IWorkerInfo>(_workerModels.Cast<IWorkerInfo>());
     }
 
     private BaseViewModel AddPlaceWindowViewModel => new AddPlaceWindowViewModes(PlaceModels);
 
-    private BaseViewModel AddWorkerWindowViewModel => new AddWorkerWindowViewModes(WorkerModels);
+    private BaseViewModel AddWorkerWindowViewModel => new AddWorkerWindowViewModes(Workers);
     private BaseViewModel RemovePlaceWindowViewModel => new RemovePlaceWindowViewModel(PlaceModels, SelectedPlace);
-    private BaseViewModel RemoveWorkerWindowViewModel => new RemoveWorkerWindowViewModel(WorkerModels, SelectedWorker);
+    private BaseViewModel RemoveWorkerWindowViewModel => new RemoveWorkerWindowViewModel(Workers, SelectedWorker);
 
     public IPlaceModel? SelectedPlace
     {
@@ -64,7 +62,7 @@ public sealed class MainWindowViewModel : BaseViewModel, IMainWindowViewModel
         }
     }
 
-    public IWorkerModel? SelectedWorker
+    public WorkerModel? SelectedWorker
     {
         get => _selectedWorker;
         set
@@ -74,28 +72,18 @@ public sealed class MainWindowViewModel : BaseViewModel, IMainWindowViewModel
         }
     }
 
-    public IList<IWorkerInfo> WorkerInfos
-    {
-        get => _workerInfos;
-        set
-        {
-            _workerInfos = value;
-            OnPropertyChanged(nameof(WorkerInfos));
-        }
-    }
-
     public ICommand AddPlaceDialog { get; }
     public ICommand AddWorkerDialog { get; }
     public ICommand RemovePlaceDialog { get; }
     public ICommand RemoveWorkerDialog { get; }
 
-    public IList<IWorkerModel> WorkerModels
+    public ObservableCollection<WorkerModel> Workers
     {
         get => _workerModels;
         set
         {
             _workerModels = value;
-            OnPropertyChanged(nameof(WorkerModels));
+            OnPropertyChanged(nameof(Workers));
         }
     }
 
