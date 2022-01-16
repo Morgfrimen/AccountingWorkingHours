@@ -60,6 +60,9 @@ public partial class App : Application
         _stopBackTask = true;
         using (Host)
         {
+            var service = Host.Services.GetService<ISaveDataService>();
+            var mainVm = Host.Services.GetService<IMainWindowViewModel>()!;
+            service.SaveWorkers(mainVm.Workers);
             await Host.StopAsync();
         }
 
@@ -78,6 +81,14 @@ public partial class App : Application
         logger!.Error(e.Exception, "Произошла глобальная/необработанная ошибка");
         _ = MessageBox.Show("Произошла ошибка в работе приложения", "Критическая ошибка", MessageBoxButton.OK,
             MessageBoxImage.Error);
+        var messageSave = MessageBox.Show("Сохранить данные?", "Уведомление", MessageBoxButton.YesNo,
+            MessageBoxImage.Question);
+        if (messageSave == MessageBoxResult.Yes)
+        {
+            var service = Host.Services.GetService<ISaveDataService>();
+            var mainVm = Host.Services.GetService<IMainWindowViewModel>()!;
+            service.SaveWorkers(mainVm.Workers);
+        }
     }
 
     private static Task CheckFolderAndFileAsync() => Task.Run(() =>
