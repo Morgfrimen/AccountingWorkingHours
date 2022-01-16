@@ -53,7 +53,7 @@ public sealed class SaveDataService : ISaveDataService
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Ошибка в сохранении XML => Worker");
+            _logger.LogError(ex, "Ошибка в получении XML => Worker");
             return default;
         }
     }
