@@ -6,10 +6,9 @@ namespace AccountingWorkingHours.Models;
 
 public sealed class PlaceModel : IPlaceModel
 {
-    public PlaceModel(string namePlace, DateOnly date, string? imageSource = null)
+    public PlaceModel(string namePlace, string? imageSource = null)
     {
         NamePlace = namePlace;
-        Date = date;
         ImageSource = imageSource;
     }
 
