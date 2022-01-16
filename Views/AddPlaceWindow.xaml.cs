@@ -8,10 +8,7 @@ namespace AccountingWorkingHours.Views;
 /// </summary>
 public partial class AddPlaceWindow : Window
 {
-    public AddPlaceWindow()
-    {
-        InitializeComponent();
-    }
+    public AddPlaceWindow() => InitializeComponent();
 
     private void CommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
     {
@@ -19,10 +16,7 @@ public partial class AddPlaceWindow : Window
         Close();
     }
 
-    private void CommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
-    {
-        e.CanExecute = true;
-    }
+    private void CommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e) => e.CanExecute = true;
 
     private void Border_MouseDown(object sender, MouseButtonEventArgs e)
     {

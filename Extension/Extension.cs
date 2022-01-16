@@ -5,8 +5,5 @@ namespace AccountingWorkingHours.Extension;
 
 public static class Extension
 {
-    public static ObservableCollection<T> ToObservableCollection<T>(this IEnumerable<T> collection)
-    {
-        return new(collection);
-    }
+    public static ObservableCollection<T> ToObservableCollection<T>(this IEnumerable<T> collection) => new(collection);
 }
