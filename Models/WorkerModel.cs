@@ -16,5 +16,5 @@ public sealed class WorkerModel : IWorkerModel
     public string? ImageSource { get; set; }
     public DateOnly Date { get; set; }
     public IList<IPlaceModel>? Places { get; set; }
-    public IList<IWorkerInfo> WorkerInfos { get; set; }
+    public IList<IWorkerInfo>? WorkerInfos { get; set; }
 }

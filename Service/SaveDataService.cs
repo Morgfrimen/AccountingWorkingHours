@@ -15,15 +15,11 @@ public sealed class SaveDataService : ISaveDataService
 {
     private readonly IMapper _mapper;
     private readonly ILogger<SaveDataService> _logger;
-    private readonly IMainWindowViewModel _mainWindowViewModel;
-
-    private System.Timers.Timer _timer;
 
     public SaveDataService(IMapper mapper, ILogger<SaveDataService> logger, IMainWindowViewModel mainWindowViewModel)
     {
         _mapper = mapper;
         _logger = logger;
-        _mainWindowViewModel = mainWindowViewModel;
     }
 
     public void SaveWorkers(IList<IWorkerModel> workers)
