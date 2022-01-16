@@ -1,17 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
-using AccountingWorkingHours.Commands;
-using AccountingWorkingHours.Models.Abstracts;
-using AccountingWorkingHours.ViewModels.Abstracts;
-using AccountingWorkingHours.Views;
-
-namespace AccountingWorkingHours.ViewModels;
+﻿namespace AccountingWorkingHours.ViewModels;
 
 public sealed class MainWindowViewModel : BaseViewModel, IMainWindowViewModel
 {
     private IList<IWorkerModel> _workerModels;
     private IWorkerModel? _selectedWorker;
+    private IList<IWorkerInfo> _workerInfos;
     private IList<IPlaceModel> _placeModels;
     private IPlaceModel? _selectedPlace;
 
@@ -19,7 +12,7 @@ public sealed class MainWindowViewModel : BaseViewModel, IMainWindowViewModel
     {
         AddPlaceDialog = new RelayCommand(obj =>
         {
-            AddPlaceWindow addPlaceWindow = new() { DataContext = AddPlaceWindowViewModel};
+            AddPlaceWindow addPlaceWindow = new() { DataContext = AddPlaceWindowViewModel };
             _ = addPlaceWindow.ShowDialog();
         });
 
@@ -31,7 +24,7 @@ public sealed class MainWindowViewModel : BaseViewModel, IMainWindowViewModel
 
         RemovePlaceDialog = new RelayCommand(obj =>
         {
-            RemovePlaceWindow removePlaceWindow = new() { DataContext = RemovePlaceWindowViewModel};
+            RemovePlaceWindow removePlaceWindow = new() { DataContext = RemovePlaceWindowViewModel };
             _ = removePlaceWindow.ShowDialog();
         });
 
@@ -43,6 +36,7 @@ public sealed class MainWindowViewModel : BaseViewModel, IMainWindowViewModel
 
         _workerModels ??= new ObservableCollection<IWorkerModel>();
         _placeModels ??= new ObservableCollection<IPlaceModel>();
+        _workerInfos ??= new ObservableCollection<IWorkerInfo>();
     }
 
     public IWorkerModel? SelectedWorker
@@ -92,6 +86,16 @@ public sealed class MainWindowViewModel : BaseViewModel, IMainWindowViewModel
         {
             _selectedPlace = value;
             OnPropertyChanged(nameof(SelectedPlace));
+        }
+    }
+
+    public IList<IWorkerInfo> WorkerInfos
+    {
+        get => _workerInfos;
+        set
+        {
+            _workerInfos = value;
+            OnPropertyChanged(nameof(WorkerInfos));
         }
     }
 }

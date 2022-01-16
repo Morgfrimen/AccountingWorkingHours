@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using AccountingWorkingHours.Extension;
 using AccountingWorkingHours.Mapping;
 using AccountingWorkingHours.Service;
 using AccountingWorkingHours.Service.Abstract;
@@ -41,12 +42,18 @@ public partial class App : Application
     {
         _ = CheckFolderAndFileAsync().ConfigureAwait(false);
         base.OnStartup(e);
+
         _ = Task.Run(async () =>
         {
+            var service = Host.Services.GetService<ISaveDataService>();
+            var mainVm = Host.Services.GetService<IMainWindowViewModel>()!;
+
+            var workersSave = service!.GetWorkers();
+            mainVm.WorkerModels = workersSave.ToObservableCollection();
+
             while (!_stopBackTask)
             {
-                var service = Host.Services.GetService<ISaveDataService>();
-                service!.SaveWorkers(Host.Services.GetService<IMainWindowViewModel>()!.WorkerModels);
+                service.SaveWorkers(mainVm.WorkerModels);
                 await Task.Delay(new TimeSpan(0, 2, 0));
             }
         });
