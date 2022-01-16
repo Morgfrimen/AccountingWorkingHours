@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:AccountingWorkingHours.ViewModels"
         mc:Ignorable="d"
-        d:DataContext="{d:DesignInstance Type=vm:AddPlaceWindowViewModes}"
+        d:DataContext="{d:DesignInstance Type=vm:RemovePlaceWindowViewModel}"
         WindowStartupLocation="CenterScreen"
-        Style="{StaticResource DialogWindow}">
+        Style="{StaticResource DialogWindow}"
+        x:Name="Window">
 
     <Window.CommandBindings>
         <CommandBinding Command="{StaticResource ExitCommand}"

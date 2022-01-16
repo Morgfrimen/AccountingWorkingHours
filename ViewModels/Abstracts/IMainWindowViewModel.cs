@@ -11,4 +11,5 @@ public interface IMainWindowViewModel
     public ICommand RemovePlaceDialog { get; }
     public ICommand RemoveWorkerDialog { get; }
     public IList<IWorkerModel> WorkerModels { get; set; }
+    public IList<IPlaceModel> PlaceModels { get; set; }
 }
