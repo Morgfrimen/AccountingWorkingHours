@@ -1,9 +1,8 @@
 ﻿using System;
-using AccountingWorkingHours.Models.Abstracts;
 
 namespace AccountingWorkingHours.Models;
 
-public sealed class WorkerInfo : IWorkerInfo
+public sealed class WorkerInfo
 {
     public WorkerInfo() => Place = new PlaceModel();
 

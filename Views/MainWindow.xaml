@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:AccountingWorkingHours.ViewModels"
-    xmlns:model="clr-namespace:AccountingWorkingHours.Models.Abstracts"
+    xmlns:model="clr-namespace:AccountingWorkingHours.Models"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Luna"
     mc:Ignorable="d"
     WindowStyle="None"
@@ -241,7 +241,7 @@
             <theme:DataGridHeaderBorder
                 Grid.Row="1"
                 Grid.RowSpan="2"
-                 ThemeColor="Metallic">
+                ThemeColor="Metallic">
                 <DataGrid
                     Background="Transparent"
                     BorderThickness="0"
@@ -252,7 +252,7 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn
                             Width="*"
-                            Header="Название объекта" Binding="{Binding Place.NamePlace}"/>
+                            Header="Название объекта" Binding="{Binding Place.NamePlace}" />
                         <DataGridCheckBoxColumn
                             Header="Оплата"
                             Width="*"
@@ -262,8 +262,10 @@
                             Width="*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <ItemContainerTemplate>
-                                    <DatePicker d:DataContext="{d:DesignInstance model:IWorkerInfo}" Text="{Binding Place.Date, 
-                                        Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayDateStart="1.01.2010"/>
+                                    <DatePicker d:DataContext="{d:DesignInstance model:WorkerInfo}"
+                                                Text="{Binding Place.Date, 
+                                        Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                DisplayDateStart="1.01.2010" />
                                 </ItemContainerTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>

@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using AccountingWorkingHours.Commands;
 using AccountingWorkingHours.Models;
-using AccountingWorkingHours.Models.Abstracts;
 using AccountingWorkingHours.ViewModels.Abstracts;
 using AccountingWorkingHours.Views;
 
@@ -11,8 +10,8 @@ namespace AccountingWorkingHours.ViewModels;
 
 public sealed class MainWindowViewModel : BaseViewModel, IMainWindowViewModel
 {
-    private IList<IPlaceModel> _placeModels;
-    private IPlaceModel? _selectedPlace;
+    private IList<PlaceModel> _placeModels;
+    private PlaceModel? _selectedPlace;
     private WorkerModel? _selectedWorker;
     private ObservableCollection<WorkerModel> _workerModels;
 
@@ -43,7 +42,7 @@ public sealed class MainWindowViewModel : BaseViewModel, IMainWindowViewModel
         });
 
         _workerModels ??= new ObservableCollection<WorkerModel>();
-        _placeModels ??= new ObservableCollection<IPlaceModel>();
+        _placeModels ??= new ObservableCollection<PlaceModel>();
     }
 
     private BaseViewModel AddPlaceWindowViewModel => new AddPlaceWindowViewModes(PlaceModels);
@@ -52,7 +51,7 @@ public sealed class MainWindowViewModel : BaseViewModel, IMainWindowViewModel
     private BaseViewModel RemovePlaceWindowViewModel => new RemovePlaceWindowViewModel(PlaceModels, SelectedPlace);
     private BaseViewModel RemoveWorkerWindowViewModel => new RemoveWorkerWindowViewModel(Workers, SelectedWorker);
 
-    public IPlaceModel? SelectedPlace
+    public PlaceModel? SelectedPlace
     {
         get => _selectedPlace;
         set
@@ -87,7 +86,7 @@ public sealed class MainWindowViewModel : BaseViewModel, IMainWindowViewModel
         }
     }
 
-    public IList<IPlaceModel> PlaceModels
+    public IList<PlaceModel> PlaceModels
     {
         get => _placeModels;
         set

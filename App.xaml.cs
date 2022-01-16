@@ -25,15 +25,18 @@ public partial class App : Application
 {
     private bool _stopBackTask;
 
-    public App() => Host = Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder().ConfigureServices(service =>
+    public App()
     {
-        _ = service.AddAutoMapper(typeof(AutoMapperProfile));
-        _ = service.AddSingleton<IMainWindowViewModel, MainWindowViewModel>();
-        _ = service.AddTransient<ISaveDataService, SaveDataService>();
-        _ = service.AddSingleton<MainWindow>();
-    }).UseSerilog((hostingContext, _, loggerConfiguration) => loggerConfiguration.ReadFrom
-        .Configuration(hostingContext.Configuration).Enrich.FromLogContext().WriteTo
-        .File("logs.log", rollingInterval: RollingInterval.Day)).Build();
+        Host = Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder().ConfigureServices(service =>
+        {
+            _ = service.AddAutoMapper(typeof(AutoMapperProfile));
+            _ = service.AddSingleton<IMainWindowViewModel, MainWindowViewModel>();
+            _ = service.AddTransient<ISaveDataService, SaveDataService>();
+            _ = service.AddSingleton<MainWindow>();
+        }).UseSerilog((hostingContext, _, loggerConfiguration) => loggerConfiguration.ReadFrom
+            .Configuration(hostingContext.Configuration).Enrich.FromLogContext().WriteTo
+            .File("logs.log", rollingInterval: RollingInterval.Day)).Build();
+    }
 
     private IHost Host { get; }
 
@@ -91,9 +94,12 @@ public partial class App : Application
         }
     }
 
-    private static Task CheckFolderAndFileAsync() => Task.Run(() =>
+    private static Task CheckFolderAndFileAsync()
     {
-        var path = Path.Combine(Environment.CurrentDirectory, "Data");
-        if (!Directory.Exists(path)) _ = Directory.CreateDirectory(path);
-    });
+        return Task.Run(() =>
+        {
+            var path = Path.Combine(Environment.CurrentDirectory, "Data");
+            if (!Directory.Exists(path)) _ = Directory.CreateDirectory(path);
+        });
+    }
 }

@@ -5,7 +5,6 @@ using System.Linq;
 using System.Xml.Serialization;
 using AccountingWorkingHours.Dto;
 using AccountingWorkingHours.Models;
-using AccountingWorkingHours.Models.Abstracts;
 using AccountingWorkingHours.Service.Abstract;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
@@ -41,14 +40,14 @@ public sealed class SaveDataService : ISaveDataService
         }
     }
 
-    public IEnumerable<IWorkerModel>? GetWorkers()
+    public IEnumerable<WorkerModel>? GetWorkers()
     {
         try
         {
             var xmlSerializer = new XmlSerializer(typeof(WorkerDto[]));
             using var fs = new FileStream(_pathFile, FileMode.OpenOrCreate);
             var workersDto = xmlSerializer.Deserialize(fs) as WorkerDto[];
-            var workers = _mapper.Map<IList<WorkerModel>>(workersDto).Cast<IWorkerModel>();
+            var workers = _mapper.Map<IList<WorkerModel>>(workersDto).Cast<WorkerModel>();
             return workers;
         }
         catch (Exception ex)

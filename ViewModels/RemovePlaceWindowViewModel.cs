@@ -2,14 +2,14 @@
 using System.Windows;
 using System.Windows.Input;
 using AccountingWorkingHours.Commands;
-using AccountingWorkingHours.Models.Abstracts;
+using AccountingWorkingHours.Models;
 using AccountingWorkingHours.ViewModels.Abstracts;
 
 namespace AccountingWorkingHours.ViewModels;
 
 public sealed class RemovePlaceWindowViewModel : BaseViewModel
 {
-    public RemovePlaceWindowViewModel(IList<IPlaceModel> placeModels, IPlaceModel? place)
+    public RemovePlaceWindowViewModel(IList<PlaceModel> placeModels, PlaceModel? place)
     {
         var model = place;
         PlaceModels = placeModels;
@@ -29,7 +29,7 @@ public sealed class RemovePlaceWindowViewModel : BaseViewModel
         });
     }
 
-    private IList<IPlaceModel> PlaceModels { get; }
+    private IList<PlaceModel> PlaceModels { get; }
 
     public ICommand RemovePlaceCommand { get; }
 }

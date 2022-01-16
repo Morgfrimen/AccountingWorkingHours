@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using AccountingWorkingHours.Models.Abstracts;
 
 namespace AccountingWorkingHours.Models;
 
-public sealed class PlaceModel : IPlaceModel
+public sealed class PlaceModel
 {
-    public PlaceModel() => Workers = new List<IWorkerModel>();
+    public PlaceModel() => Workers = new List<WorkerModel>();
+
     public PlaceModel(string? namePlace, string? imageSource = null) : this()
     {
         NamePlace = namePlace;
         ImageSource = imageSource;
     }
 
-    public string? NamePlace { get; set; }
     public DateTime Date { get; set; }
     public string? ImageSource { get; set; }
-    public IList<IWorkerModel>? Workers { get; set; }
+
+    public string? NamePlace { get; set; }
+    public IList<WorkerModel>? Workers { get; set; }
 }

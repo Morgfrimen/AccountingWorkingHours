@@ -2,7 +2,6 @@
 using System.Windows.Input;
 using AccountingWorkingHours.Commands;
 using AccountingWorkingHours.Models;
-using AccountingWorkingHours.Models.Abstracts;
 using AccountingWorkingHours.ViewModels.Abstracts;
 
 namespace AccountingWorkingHours.ViewModels;
@@ -11,7 +10,7 @@ public sealed class AddPlaceWindowViewModes : BaseViewModel
 {
     private string? _namePlace;
 
-    public AddPlaceWindowViewModes(IList<IPlaceModel> placeModels)
+    public AddPlaceWindowViewModes(IList<PlaceModel> placeModels)
     {
         PlaceModels = placeModels;
         AddPlace = new RelayCommand(obj =>
@@ -33,5 +32,5 @@ public sealed class AddPlaceWindowViewModes : BaseViewModel
         }
     }
 
-    private IList<IPlaceModel> PlaceModels { get; }
+    private IList<PlaceModel> PlaceModels { get; }
 }

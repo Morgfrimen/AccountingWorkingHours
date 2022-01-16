@@ -1,9 +1,8 @@
 ﻿using System.Collections.ObjectModel;
-using AccountingWorkingHours.Models.Abstracts;
 
 namespace AccountingWorkingHours.Models;
 
-public sealed class WorkerModel : IWorkerModel
+public sealed class WorkerModel
 {
     public WorkerModel()
     {
@@ -17,8 +16,9 @@ public sealed class WorkerModel : IWorkerModel
         ImageSource = imageSource;
     }
 
-    public string? Name { get; set; }
     public string? ImageSource { get; set; }
+
+    public string? Name { get; set; }
     public ObservableCollection<PlaceModel>? Places { get; set; }
     public ObservableCollection<WorkerInfo>? WorkerInfos { get; set; }
 }
