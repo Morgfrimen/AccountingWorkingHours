@@ -94,11 +94,11 @@
             <ListView Background="Transparent"
                       BorderThickness="0"
                       Grid.Row="1"
-                      ItemContainerStyle="{StaticResource WorkerCard}" 
+                      ItemContainerStyle="{StaticResource WorkerCard}"
                       ItemsSource="{Binding WorkerModels, Mode=TwoWay, 
                 UpdateSourceTrigger=PropertyChanged}"
                       SelectedItem="{Binding SelectedWorker, Mode=TwoWay, 
-                UpdateSourceTrigger=PropertyChanged}"/>
+                UpdateSourceTrigger=PropertyChanged}" />
 
             <StackPanel Grid.Row="2"
                         Orientation="Vertical"
@@ -194,7 +194,9 @@
                       BorderThickness="0"
                       VerticalAlignment="Stretch"
                       ColumnHeaderStyle="{StaticResource headerStyle}"
-                      AutoGenerateColumns="False">
+                      AutoGenerateColumns="False"
+                      ItemsSource="{Binding WorkerInfos,
+                UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Дата" Width="*" />
                     <DataGridTextColumn Header="Объект" Width="*" />

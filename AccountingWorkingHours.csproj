@@ -21,6 +21,7 @@
 		<Folder Include="Service\Abstract\" />
 		<Folder Include="ViewModels\Abstracts\" />
 		<Folder Include="Dto\" />
+		<Folder Include="Extension\" />
 	</ItemGroup>
 
 	<ItemGroup>
