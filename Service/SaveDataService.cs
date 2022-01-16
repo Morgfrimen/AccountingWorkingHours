@@ -41,7 +41,7 @@ public sealed class SaveDataService : ISaveDataService
         }
     }
 
-    public IEnumerable<IWorkerModel> GetWorkers()
+    public IEnumerable<IWorkerModel>? GetWorkers()
     {
         try
         {
