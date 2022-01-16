@@ -48,13 +48,12 @@
 
         <StackPanel Orientation="Horizontal" Grid.Row="2">
             <Button Style="{StaticResource ButtonFooter}"
-                    Content="Да" 
+                    Content="Да"
                     Command="{Binding RemoveWorkerCommand}"
-                    CommandParameter="{Binding ElementName=Window}"/>
+                    CommandParameter="{Binding ElementName=Window}" />
             <Button Style="{StaticResource ButtonFooter}"
                     Content="Нет"
-                    Command="{StaticResource ExitCommand}">
-            </Button>
+                    Command="{StaticResource ExitCommand}" />
         </StackPanel>
     </Grid>
 </Window>

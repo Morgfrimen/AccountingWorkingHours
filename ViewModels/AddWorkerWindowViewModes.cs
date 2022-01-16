@@ -9,19 +9,21 @@ namespace AccountingWorkingHours.ViewModels;
 
 public sealed class AddWorkerWindowViewModes : BaseViewModel
 {
-    private string _name;
+    private string? _name;
 
     public AddWorkerWindowViewModes(IList<IWorkerModel> workerModels)
     {
         WorkerModels = workerModels;
-        AddWorker = new RelayCommand((obj) =>
+        AddWorker = new RelayCommand(obj =>
         {
             WorkerModels.Add(new WorkerModel(Name));
             Name = string.Empty;
         });
     }
 
-    public string Name
+    public ICommand AddWorker { get; }
+
+    public string? Name
     {
         get => _name;
         set
@@ -32,6 +34,4 @@ public sealed class AddWorkerWindowViewModes : BaseViewModel
     }
 
     private IList<IWorkerModel> WorkerModels { get; }
-
-    public ICommand AddWorker { get; }
 }

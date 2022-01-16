@@ -9,17 +9,16 @@ namespace AccountingWorkingHours.ViewModels;
 
 public sealed class RemovePlaceWindowViewModel : BaseViewModel
 {
-    private IList<IPlaceModel> PlaceModels { get; }
-
     public RemovePlaceWindowViewModel(IList<IPlaceModel> placeModels, IPlaceModel? place)
     {
         var model = place;
         PlaceModels = placeModels;
-        RemovePlaceCommand = new RelayCommand((obj) =>
+        RemovePlaceCommand = new RelayCommand(obj =>
         {
             if (model is null || !PlaceModels.Remove(model))
             {
-                MessageBox.Show("Объект уже был удален", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning,
+                _ = MessageBox.Show("Объект уже был удален", "Уведомление", MessageBoxButton.OK,
+                    MessageBoxImage.Warning,
                     MessageBoxResult.OK);
                 return;
             }
@@ -29,6 +28,8 @@ public sealed class RemovePlaceWindowViewModel : BaseViewModel
             window.Close();
         });
     }
+
+    private IList<IPlaceModel> PlaceModels { get; }
 
     public ICommand RemovePlaceCommand { get; }
 }

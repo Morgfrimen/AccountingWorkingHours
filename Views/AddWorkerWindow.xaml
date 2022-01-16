@@ -51,18 +51,16 @@
                      Width="180"
                      Text="{Binding Name, 
                 Mode=TwoWay,
-                UpdateSourceTrigger=PropertyChanged}"/>
+                UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="2">
             <Button Style="{StaticResource ButtonFooter}"
-                    Content="OK" 
-                    Command="{Binding AddWorker}"/>
+                    Content="OK"
+                    Command="{Binding AddWorker}" />
             <Button Style="{StaticResource ButtonFooter}"
                     Content="Закрыть"
-                    Command="{StaticResource ExitCommand}">
-
-            </Button>
+                    Command="{StaticResource ExitCommand}" />
         </StackPanel>
     </Grid>
 </Window>

@@ -8,8 +8,8 @@ public interface IMainWindowViewModel
 {
     public ICommand AddPlaceDialog { get; }
     public ICommand AddWorkerDialog { get; }
+    public IList<IPlaceModel> PlaceModels { get; set; }
     public ICommand RemovePlaceDialog { get; }
     public ICommand RemoveWorkerDialog { get; }
     public IList<IWorkerModel> WorkerModels { get; set; }
-    public IList<IPlaceModel> PlaceModels { get; set; }
 }

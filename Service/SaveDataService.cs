@@ -14,8 +14,8 @@ namespace AccountingWorkingHours.Service;
 
 public sealed class SaveDataService : ISaveDataService
 {
-    private readonly IMapper _mapper;
     private readonly ILogger<SaveDataService> _logger;
+    private readonly IMapper _mapper;
 
     private readonly string _pathFile = Path.Combine(Environment.CurrentDirectory, "Data", "worker.xml");
 

@@ -21,20 +21,19 @@ namespace AccountingWorkingHours;
 /// </summary>
 public partial class App : Application
 {
-    public App()
-    {
-        Host = Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder().ConfigureServices(service =>
-        {
-            service.AddAutoMapper(typeof(AutoMapperProfile));
+    private bool _stopBackTask;
 
-            service.AddSingleton<IMainWindowViewModel, MainWindowViewModel>();
-            service.AddTransient<ISaveDataService, SaveDataService>();
+    public App() => Host = Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder().ConfigureServices(service =>
+                  {
+                      _ = service.AddAutoMapper(typeof(AutoMapperProfile));
 
-            service.AddSingleton<MainWindow>();
-        }).UseSerilog((hostingContext, _, loggerConfiguration) => loggerConfiguration.ReadFrom
-            .Configuration(hostingContext.Configuration).Enrich.FromLogContext().WriteTo
-            .File("logs.log", rollingInterval: RollingInterval.Day)).Build();
-    }
+                      _ = service.AddSingleton<IMainWindowViewModel, MainWindowViewModel>();
+                      _ = service.AddTransient<ISaveDataService, SaveDataService>();
+
+                      _ = service.AddSingleton<MainWindow>();
+                  }).UseSerilog((hostingContext, _, loggerConfiguration) => loggerConfiguration.ReadFrom
+                      .Configuration(hostingContext.Configuration).Enrich.FromLogContext().WriteTo
+                      .File("logs.log", rollingInterval: RollingInterval.Day)).Build();
 
     private IHost Host { get; }
 
@@ -49,7 +48,7 @@ public partial class App : Application
             var mainVm = Host.Services.GetService<IMainWindowViewModel>()!;
 
             var workersSave = service!.GetWorkers();
-            mainVm.WorkerModels = workersSave.ToObservableCollection();
+            mainVm.WorkerModels = workersSave!.ToObservableCollection();
 
             while (!_stopBackTask)
             {
@@ -59,12 +58,14 @@ public partial class App : Application
         });
     }
 
-    private bool _stopBackTask = false;
-
     protected override async void OnExit(ExitEventArgs e)
     {
         _stopBackTask = true;
-        using (Host) await Host.StopAsync();
+        using (Host)
+        {
+            await Host.StopAsync();
+        }
+
         base.OnExit(e);
     }
 
@@ -82,13 +83,9 @@ public partial class App : Application
             MessageBoxImage.Error);
     }
 
-    private static Task CheckFolderAndFileAsync()
-    {
-        return Task.Run(() =>
-        {
-            var path = Path.Combine(Environment.CurrentDirectory, "Data");
-            if (!Directory.Exists(path))
-                _ = Directory.CreateDirectory(path);
-        });
-    }
+    private static Task CheckFolderAndFileAsync() => Task.Run(() =>
+                                                           {
+                                                               var path = Path.Combine(Environment.CurrentDirectory, "Data");
+                                                               if (!Directory.Exists(path)) _ = Directory.CreateDirectory(path);
+                                                           });
 }

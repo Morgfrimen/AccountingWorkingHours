@@ -8,7 +8,7 @@ public class AutoMapperProfile : Profile
 {
     public AutoMapperProfile()
     {
-        CreateMap<WorkerDto, WorkerModel>()
+        _ = CreateMap<WorkerDto, WorkerModel>()
             .ForMember(m => m.Places, dto => dto.Ignore())
             .ForMember(m => m.WorkerInfos, dto => dto.Ignore())
             .ReverseMap();

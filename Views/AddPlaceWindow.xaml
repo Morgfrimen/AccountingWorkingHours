@@ -15,7 +15,6 @@
                         CanExecute="CommandBinding_OnCanExecute" />
     </Window.CommandBindings>
 
-    
 
     <Grid>
         <Grid.RowDefinitions>
@@ -50,20 +49,19 @@
                      FontSize="14"
                      FontWeight="Medium"
                      MaxLength="20"
-                     Width="180" 
+                     Width="180"
                      Text="{Binding NamePlace, 
                 Mode=TwoWay,
-                UpdateSourceTrigger=PropertyChanged}"/>
+                UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="2">
             <Button Style="{StaticResource ButtonFooter}"
                     Content="OK"
-                    Command="{Binding AddPlace}"/>
+                    Command="{Binding AddPlace}" />
             <Button Style="{StaticResource ButtonFooter}"
                     Content="Закрыть"
-                    Command="{StaticResource ExitCommand}">
-            </Button>
+                    Command="{StaticResource ExitCommand}" />
         </StackPanel>
     </Grid>
 </Window>

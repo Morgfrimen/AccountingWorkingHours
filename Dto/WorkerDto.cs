@@ -6,11 +6,15 @@ namespace AccountingWorkingHours.Dto;
 public class WorkerDto
 {
     /// <summary>
-    /// Для сериализации
+    ///     Для сериализации
     /// </summary>
-    public WorkerDto() { }
+#pragma warning disable CS8618
+    public WorkerDto()
+    {
+    }
+#pragma warning restore CS8618
+    public DateOnly? Date { get; set; }
+    public string? ImageSource { get; set; }
 
-    public string Name { get; set; }
-    public DateOnly Date { get; set; }
-    public string ImageSource { get; set; }
+    public string? Name { get; set; }
 }
