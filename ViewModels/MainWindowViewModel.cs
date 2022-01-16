@@ -12,6 +12,7 @@ public sealed class MainWindowViewModel : BaseViewModel, IMainWindowViewModel
 {
     private IList<IWorkerModel> _workerModels;
     private IWorkerModel? _selectedWorker;
+    private IList<IWorkerInfo> _workerInfos;
 
     public MainWindowViewModel()
     {
@@ -40,6 +41,7 @@ public sealed class MainWindowViewModel : BaseViewModel, IMainWindowViewModel
         });
 
         _workerModels ??= new ObservableCollection<IWorkerModel>();
+        _workerInfos ??= new ObservableCollection<IWorkerInfo>();
     }
 
     public IWorkerModel? SelectedWorker
@@ -67,6 +69,16 @@ public sealed class MainWindowViewModel : BaseViewModel, IMainWindowViewModel
         {
             _workerModels = value;
             OnPropertyChanged(nameof(WorkerModels));
+        }
+    }
+
+    public IList<IWorkerInfo> WorkerInfos
+    {
+        get => _workerInfos;
+        set
+        {
+            _workerInfos = value;
+            OnPropertyChanged(nameof(WorkerInfos));
         }
     }
 }

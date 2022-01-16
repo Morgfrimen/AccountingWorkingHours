@@ -43,9 +43,9 @@
                                 <Label Content="{Binding Name}"
                                        Foreground="White"
                                        FontSize="15" />
-                                <Label Content="{Binding NowPlace}"
+                                <!--<Label Content="{Binding NowPlace}"
                                        Foreground="White"
-                                       FontSize="12" />
+                                       FontSize="12" />-->
                             </StackPanel>
 
                         </StackPanel>
