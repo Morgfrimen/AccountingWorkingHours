@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:AccountingWorkingHours.ViewModels"
     xmlns:model="clr-namespace:AccountingWorkingHours.Models.Abstracts"
+    xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Luna"
     mc:Ignorable="d"
     WindowStyle="None"
     AllowsTransparency="False"
@@ -237,46 +238,42 @@
                     Width="*" />
             </Grid.ColumnDefinitions>
 
-            <DataGrid
+            <theme:DataGridHeaderBorder
                 Grid.Row="1"
                 Grid.RowSpan="2"
-                CanUserAddRows="True"
-                CanUserDeleteRows="True"
-                Background="Transparent"
-                BorderThickness="0"
-                VerticalAlignment="Stretch"
-                ColumnHeaderStyle="{StaticResource headerStyle}"
-                AutoGenerateColumns="False"
-                
-                ItemsSource="{Binding SelectedWorker,
+                 ThemeColor="Metallic">
+                <DataGrid
+                    Background="Transparent"
+                    BorderThickness="0"
+                    VerticalAlignment="Stretch"
+                    AutoGenerateColumns="False"
+                    ItemsSource="{Binding SelectedWorker.WorkerInfos,
                 UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
-                <DataGrid.Columns>
-                    <DataGridTextColumn
-                        Header="Дата"
-                        Width="*"
-                        Binding="{Binding SelectedWorker.Date }" />
-                    <DataGridTextColumn
-                        Header="Объект"
-                        Width="*"
-                        Binding="{Binding SelectedWorker.Place.NamePlace}" />
-                    <DataGridTextColumn
-                        Header="Оплата"
-                        Width="*"
-                        Binding="{Binding SelectedWorker.IsPrepaid}" />
-                    <DataGridTemplateColumn
-                        Width="0.25*">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel
-                                    Orientation="Horizontal">
-                                    <Button>Удалить</Button>
-                                    <Button>Изменить</Button>
-                                </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn
+                            Width="*"
+                            Header="Название объекта" Binding="{Binding Place.NamePlace}"/>
+                        <DataGridCheckBoxColumn
+                            Header="Оплата"
+                            Width="*"
+                            Binding="{Binding IsPrepaid}" />
+                        <DataGridTemplateColumn
+                            Header="Дата"
+                            Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <ItemContainerTemplate>
+                                    <DatePicker d:DataContext="{d:DesignInstance model:IWorkerInfo}" Text="{Binding Place.Date, 
+                                        Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayDateStart="1.01.2010"/>
+                                </ItemContainerTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn
+                            Width="0.5*"
+                            Header=" {TODO: Кнопки}"
+                            Binding="{Binding Place.NamePlace}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </theme:DataGridHeaderBorder>
 
             <Grid>
                 <Grid.ColumnDefinitions>

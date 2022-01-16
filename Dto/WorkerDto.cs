@@ -17,4 +17,6 @@ public class WorkerDto
     public string? ImageSource { get; set; }
 
     public string? Name { get; set; }
+
+    //public WorkerInfo[] WorkerInfos { get; set; }
 }

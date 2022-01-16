@@ -1,25 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using AccountingWorkingHours.Models.Abstracts;
 
 namespace AccountingWorkingHours.Models;
 
-public sealed class WorkerModel : IWorkerModel, IWorkerInfo
+public sealed class WorkerModel : IWorkerModel
 {
-    public WorkerModel() { }
+    public WorkerModel()
+    {
+        Places = new ObservableCollection<PlaceModel>();
+        WorkerInfos = new ObservableCollection<WorkerInfo>();
+    }
 
-    public WorkerModel(string? name, string? imageSource = null)
+    public WorkerModel(string? name, string? imageSource = null) : this()
     {
         Name = name;
         ImageSource = imageSource;
     }
 
-    public DateOnly Date { get; set; }
-    public IPlaceModel? Place { get; set; }
-    public bool IsPrepaid { get; set; }
-
     public string? Name { get; set; }
     public string? ImageSource { get; set; }
-    public IList<IPlaceModel>? Places { get; set; }
-    public IList<IWorkerInfo>? WorkerInfos { get; set; }
+    public ObservableCollection<PlaceModel>? Places { get; set; }
+    public ObservableCollection<WorkerInfo>? WorkerInfos { get; set; }
 }
