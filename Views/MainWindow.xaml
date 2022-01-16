@@ -145,7 +145,11 @@
             <ListView Background="Transparent"
                       BorderThickness="0"
                       Grid.Row="1"
-                      ItemContainerStyle="{StaticResource PlaceCard}" />
+                      ItemContainerStyle="{StaticResource PlaceCard}"
+                      ItemsSource="{Binding PlaceModels,
+                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      SelectedItem="{Binding SelectedPlace,
+                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
             <StackPanel Grid.Row="2"
                         Orientation="Vertical"

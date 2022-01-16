@@ -3,8 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewModels="clr-namespace:AccountingWorkingHours.ViewModels"
+        xmlns:vm="clr-namespace:AccountingWorkingHours.ViewModels"
         mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=vm:AddPlaceWindowViewModes}"
         WindowStartupLocation="CenterScreen"
         Style="{StaticResource DialogWindow}">
 
@@ -14,9 +15,7 @@
                         CanExecute="CommandBinding_OnCanExecute" />
     </Window.CommandBindings>
 
-    <Window.DataContext>
-        <viewModels:AddPlaceWindowViewModes />
-    </Window.DataContext>
+    
 
     <Grid>
         <Grid.RowDefinitions>
@@ -51,11 +50,16 @@
                      FontSize="14"
                      FontWeight="Medium"
                      MaxLength="20"
-                     Width="180" />
+                     Width="180" 
+                     Text="{Binding NamePlace, 
+                Mode=TwoWay,
+                UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="2">
-            <Button Style="{StaticResource ButtonFooter}">ОК</Button>
+            <Button Style="{StaticResource ButtonFooter}"
+                    Content="OK"
+                    Command="{Binding AddPlace}"/>
             <Button Style="{StaticResource ButtonFooter}"
                     Content="Закрыть"
                     Command="{StaticResource ExitCommand}">
