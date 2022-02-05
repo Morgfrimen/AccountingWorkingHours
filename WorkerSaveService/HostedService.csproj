@@ -7,6 +7,10 @@
 		<UserSecretsId>dotnet-WorkerSaveService-D07B3EFC-691D-41E5-8EDD-784DB27DB68A</UserSecretsId>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
+		<DebugType>none</DebugType>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<PackageReference Include="Grpc.AspNetCore.Server" Version="2.42.0" />
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
