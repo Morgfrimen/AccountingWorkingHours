@@ -18,9 +18,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Service\Abstract\" />
 		<Folder Include="ViewModels\Abstracts\" />
-		<Folder Include="Dto\" />
 		<Folder Include="Extension\" />
 	</ItemGroup>
 
@@ -33,6 +31,10 @@
 		<PackageReference Include="Serilog.Extensions.Hosting" Version="4.2.0" />
 		<PackageReference Include="Serilog.Settings.Configuration" Version="3.3.0" />
 		<PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Protocol\LibConnectWpf\LibConnectWpf.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -62,12 +64,16 @@
 		</Page>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Update="appsettings.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
 	<Target Name="SpicNSpan" AfterTargets="Clean">
 		<!-- common vars https://msdn.microsoft.com/en-us/library/c02as0cs.aspx?f=255&MSPPError=-2147217396 -->
 		<RemoveDir Directories="$(TargetDir)" />
 		<!-- bin -->
-		<RemoveDir Directories="$(SolutionDir).vs" />
-		<!-- .vs -->
 		<RemoveDir Directories="$(ProjectDir)$(BaseIntermediateOutputPath)" />
 		<!-- obj -->
 	</Target>

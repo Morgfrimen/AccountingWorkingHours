@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+	<?define TargetDirWpf=$(var.AccountingWorkingHours.TargetDir)publish\AccountingWorkingHours.exe?>
+	<?define TargetDirService=$(var.HostedService.TargetDir)publish\HostedService.exe?>
+	<?define ProductNameWpf=$(var.AccountingWorkingHours.ProjectName)?>
+	<?define ProductNameService=$(var.HostedService.ProjectName)?>
+	<?define TargetFileNameWpf=$(var.AccountingWorkingHours.TargetFileName)?>
+	<?define TargetFileNameService=$(var.HostedService.TargetFileName)?>
+	<?define Script=$(var.HostedService.TargetDir)publish\BuildService.ps1?>
+	<?define DescriptionWpf="Установщик"?>
+
+	<Product Id="050BCBA2-DD5D-4284-8A82-68ED385EBF84" Name="$(var.ProductNameWpf)" Language="1049" Codepage="1251" Version="1.0.0.0" Manufacturer="123123123" UpgradeCode="b5547376-3a67-46f9-84a1-1793cb7e6025">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Description="$(var.DescriptionWpf)" SummaryCodepage="1251"/>
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate />
+
+		<Feature Id="ProductFeature" Title="Installer" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="$(var.ProductNameWpf)" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			<Component Id="Components" Guid="3D360134-851E-4554-8B76-BEA067766CC8">
+				<File Name="$(var.TargetFileNameWpf)" Source="$(var.TargetDirWpf)"/>
+				<File Name="$(var.TargetFileNameService)" Source="$(var.TargetDirService)"/>
+				<File Name="ScripService" Source="$(var.Script)"/>
+			</Component>
+		</ComponentGroup>
+	</Fragment>
+</Wix>
